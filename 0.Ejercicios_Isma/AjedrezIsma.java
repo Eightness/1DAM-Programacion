@@ -108,21 +108,50 @@ public class AjedrezIsma {
         for (int row = 0; row < tablero.length; row++) {
             for (int col = 0; col < tablero[row].length; col++) {
                 if (tablero[row][col].equalsIgnoreCase("R")) {
-                    //Columna
-                    for (int count = 0; count < tablero.length; count++) {
-                        if (tablero[count][col].equals("")) {
-                            tablero[count][col] = "X";
-                        }
-                        if (frenarVision(tablero, count, col)){
-                            break;
+                    //Arriba
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (row - i >= 0) {
+                            if (tablero[row - i][col].equals("")){
+                                tablero[row - i][col] = "X";
+                            }
+                            if (frenarVision(tablero, row - i, col)) {
+                                break;
+                            }
                         }
                     }
-                    //Fila
-                    for (int count = 0; count < tablero.length; count++) {
-                        if (tablero[row][count].equals("")) {
-                            tablero[row][count] = "X";
+                    //Abajo
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (row + i < tablero.length) {
+                            if (tablero[row + i][col].equals("")){
+                                tablero[row + i][col] = "X";
+                            }
+                            if (frenarVision(tablero, row + i, col)) {
+                                break;
+                            }
                         }
-                    }          
+                    }
+                    //Derecha
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (col + i < tablero.length) {
+                            if (tablero[row][col + i].equals("")){
+                                tablero[row][col + i] = "X";
+                            }
+                            if (frenarVision(tablero, row, col + i)) {
+                                break;
+                            }
+                        }
+                    }
+                    //Izquierda
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (col - i >= 0) {
+                            if (tablero[row][col - i].equals("")){
+                                tablero[row][col - i] = "X";
+                            }
+                            if (frenarVision(tablero, row, col - i)) {
+                                break;
+                            }
+                        }
+                    }        
                 }
             }
         }
@@ -141,6 +170,9 @@ public class AjedrezIsma {
                             if (tablero[row - i][col + i].equals("")){
                                 tablero[row - i][col + i] = "X";
                             }
+                            if (frenarVision(tablero, row - i, col + i)) {
+                                break;
+                            }
                         }
                     }
                     //Arriba Izquierda
@@ -148,6 +180,9 @@ public class AjedrezIsma {
                         if (row - i >= 0 && col - i >= 0) {
                             if (tablero[row - i][col - i].equals("")){
                                 tablero[row - i][col - i] = "X";
+                            }
+                            if (frenarVision(tablero, row - i, col - i)) {
+                                break;
                             }
                         }
                     }
@@ -157,6 +192,9 @@ public class AjedrezIsma {
                             if (tablero[row + i][col + i].equals("")){
                                 tablero[row + i][col + i] = "X";
                             }
+                            if (frenarVision(tablero, row + i, col + i)) {
+                                break;
+                            }
                         }
                     }
                     //Abajo Izquierda
@@ -164,6 +202,9 @@ public class AjedrezIsma {
                         if (row + i < tablero.length && col - i >= 0) {
                             if (tablero[row + i][col - i].equals("")){
                                 tablero[row + i][col - i] = "X";
+                            }
+                            if (frenarVision(tablero, row + i, col - i)) {
+                                break;
                             }
                         }
                     }
@@ -229,14 +270,48 @@ public class AjedrezIsma {
             for (int col = 0; col < tablero[row].length; col++) {
                 if (tablero[row][col].equalsIgnoreCase("Q")) {
                     //Función Torres
-                    for (int count = 0; count < tablero.length; count++) {
-                        //Columna
-                        if (tablero[count][col].equals("")) {
-                            tablero[count][col] = "X";
+                    //Arriba
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (row - i >= 0) {
+                            if (tablero[row - i][col].equals("")){
+                                tablero[row - i][col] = "X";
+                            }
+                            if (frenarVision(tablero, row - i, col)) {
+                                break;
+                            }
                         }
-                        //Fila
-                        if (tablero[row][count].equals("")) {
-                            tablero[row][count] = "X";
+                    }
+                    //Abajo
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (row + i < tablero.length) {
+                            if (tablero[row + i][col].equals("")){
+                                tablero[row + i][col] = "X";
+                            }
+                            if (frenarVision(tablero, row + i, col)) {
+                                break;
+                            }
+                        }
+                    }
+                    //Derecha
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (col + i < tablero.length) {
+                            if (tablero[row][col + i].equals("")){
+                                tablero[row][col + i] = "X";
+                            }
+                            if (frenarVision(tablero, row, col + i)) {
+                                break;
+                            }
+                        }
+                    }
+                    //Izquierda
+                    for (int i = 1; i < tablero.length; i++) {
+                        if (col - i >= 0) {
+                            if (tablero[row][col - i].equals("")){
+                                tablero[row][col - i] = "X";
+                            }
+                            if (frenarVision(tablero, row, col - i)) {
+                                break;
+                            }
                         }
                     }
                     //Función Alfiles
@@ -246,6 +321,9 @@ public class AjedrezIsma {
                             if (tablero[row - i][col + i].equals("")){
                                 tablero[row - i][col + i] = "X";
                             }
+                            if (frenarVision(tablero, row - i, col + i)) {
+                                break;
+                            }
                         }
                     }
                     //Arriba Izquierda
@@ -253,6 +331,9 @@ public class AjedrezIsma {
                         if (row - i >= 0 && col - i >= 0) {
                             if (tablero[row - i][col - i].equals("")){
                                 tablero[row - i][col - i] = "X";
+                            }
+                            if (frenarVision(tablero, row - i, col - i)) {
+                                break;
                             }
                         }
                     }
@@ -262,6 +343,9 @@ public class AjedrezIsma {
                             if (tablero[row + i][col + i].equals("")){
                                 tablero[row + i][col + i] = "X";
                             }
+                            if (frenarVision(tablero, row + i, col + i)) {
+                                break;
+                            }
                         }
                     }
                     //Abajo Izquierda
@@ -269,6 +353,9 @@ public class AjedrezIsma {
                         if (row + i < tablero.length && col - i >= 0) {
                             if (tablero[row + i][col - i].equals("")){
                                 tablero[row + i][col - i] = "X";
+                            }
+                            if (frenarVision(tablero, row + i, col - i)) {
+                                break;
                             }
                         }
                     }
