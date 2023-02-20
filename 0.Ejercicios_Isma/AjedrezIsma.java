@@ -72,6 +72,14 @@ public class AjedrezIsma {
         return false;
     }
 
+    //Método para saber si la casilla está vacía
+    public static boolean casillaVacia(String[][] tablero, int row, int col) {
+        if (tablero[row][col].equals("")){
+            return true;
+        }
+        return false;
+    }
+
     //Método para Peones
     public static void peones(String[][] tablero) {
 
@@ -100,16 +108,21 @@ public class AjedrezIsma {
         for (int row = 0; row < tablero.length; row++) {
             for (int col = 0; col < tablero[row].length; col++) {
                 if (tablero[row][col].equalsIgnoreCase("R")) {
+                    //Columna
                     for (int count = 0; count < tablero.length; count++) {
-                        //Columna
                         if (tablero[count][col].equals("")) {
                             tablero[count][col] = "X";
                         }
-                        //Fila
+                        if (frenarVision(tablero, count, col)){
+                            break;
+                        }
+                    }
+                    //Fila
+                    for (int count = 0; count < tablero.length; count++) {
                         if (tablero[row][count].equals("")) {
                             tablero[row][count] = "X";
                         }
-                    }        
+                    }          
                 }
             }
         }

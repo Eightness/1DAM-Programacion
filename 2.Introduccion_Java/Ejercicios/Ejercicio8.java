@@ -1,4 +1,4 @@
-public class Main
+public class Ejercicio8
 {
     public static void main(String[] args) {
         int dinerocuenta = 2000;
