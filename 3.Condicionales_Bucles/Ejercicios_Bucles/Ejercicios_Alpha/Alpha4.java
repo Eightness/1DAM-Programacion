@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Alpha3 {
+public class Alpha4 {
 
     public static void main(String[] args) {
 
