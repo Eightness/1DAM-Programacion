@@ -62,6 +62,16 @@ public class AjedrezIsma {
         }
     }
 
+    //Método para detener visión de torres, alfiles y reina
+    public static boolean frenarVision(String[][] tablero, int row, int col){
+
+        if (tablero[row][col].equalsIgnoreCase("P") || tablero[row][col].equalsIgnoreCase("R") || tablero[row][col].equalsIgnoreCase("N") || tablero[row][col].equalsIgnoreCase("B") || tablero[row][col].equalsIgnoreCase("Q") || tablero[row][col].equalsIgnoreCase("K")){
+            return true;
+        }
+        
+        return false;
+    }
+
     //Método para Peones
     public static void peones(String[][] tablero) {
 
@@ -99,7 +109,7 @@ public class AjedrezIsma {
                         if (tablero[row][count].equals("")) {
                             tablero[row][count] = "X";
                         }
-                    }           
+                    }        
                 }
             }
         }
@@ -419,7 +429,6 @@ public class AjedrezIsma {
         for (int row = 0; row < tablero.length; row++) {
             for (int col = 0; col < tablero[row].length; col++) {
                 if (tablero[row][col].equals("X")) {
-                    transcribirColumnas(col);
                     String casilla = transcribirColumnas(col) + transcribirFilas(row);
                     output[count] = casilla;
                     count++;
