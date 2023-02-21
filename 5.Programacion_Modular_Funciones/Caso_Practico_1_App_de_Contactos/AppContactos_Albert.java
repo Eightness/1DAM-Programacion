@@ -55,12 +55,12 @@ public class AppContactos_Albert {
 
             //Ver contactos
             case 1:
-            verContactos();
+            verContactos(contactos);
             break;
 
             //Agregar contactos
             case 2:
-            agregarContacto();
+            agregarContacto(contactos, nombres, telefonos, correos, numContactos);
             break;
 
             //Eliminar contactos
@@ -130,12 +130,12 @@ public class AppContactos_Albert {
 
     //Método 4 Buscar por nombre 
     public static String buscarEspecifico (String[] array, String busqueda) {
-        return resultado;
+        return "resultado";
     }
 
     //Método 7 Búsqueda Global
     public static String buscarGlobal (String[] array, String busqueda) {
-        return resultado;
+        return "resultado";
     }
 
     //Método 8 Salir

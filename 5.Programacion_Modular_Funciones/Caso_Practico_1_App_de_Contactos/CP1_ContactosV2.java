@@ -1,5 +1,3 @@
-package ud5casospracticos;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
