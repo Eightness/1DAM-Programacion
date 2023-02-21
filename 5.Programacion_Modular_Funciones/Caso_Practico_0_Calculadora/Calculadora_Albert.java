@@ -79,13 +79,49 @@ public class Calculadora_Albert {
         return eleccion;
     }
 
-    //Método para pedir valores
+    //Método para pedir valores negativos y positivos (opciones 1 - 4)
     public static double pedirValor () {
         //Scanner
         Scanner input = new Scanner(System.in);
 
         System.out.print("Introduce un número: ");
         double n = input.nextDouble();
+
+        return n;
+    }
+
+    //Método para pedir valores entre 0 y 1000000 (opciones 5 - 7)
+    public static double pedirValor2 () {
+        //Scanner
+        Scanner input = new Scanner(System.in);
+        double n;
+
+        do {
+            System.out.print("Introduce un número entre 0 y 1.000.000: ");
+            n = input.nextDouble();
+
+            if (n < 0 || n > 1000000) {
+                System.out.println("Inválido, prueba otro número.");
+            }
+        } while (n < 0 || n > 1000000);
+
+        return n;
+    }
+
+    //Método para pedir valores entre -360 y 360 (opción 8)
+    public static double pedirValor3 () {
+        //Scanner
+        Scanner input = new Scanner(System.in);
+        double n;
+
+        do {
+            System.out.print("Introduce un número entre -360 y 360: ");
+            n = input.nextDouble();
+
+            if (n < -360 || n > 360) {
+                System.out.println("Inválido, prueba otro número.");
+            }
+        } while (n < -360 || n > 360);
 
         return n;
     }
@@ -128,29 +164,27 @@ public class Calculadora_Albert {
 
             //Caso área rectángulo
             case 5:
-            a = pedirValor();
-            b = pedirValor();
+            a = pedirValor2();
+            b = pedirValor2();
             System.out.println("El área del rectángulo con base " + a + " y altura " + b + " es: " + areaRectangulo(a, b));
             break;
 
             //Caso área triángulo
             case 6:
-            a = pedirValor();
-            b = pedirValor();
+            a = pedirValor2();
+            b = pedirValor2();
             System.out.println("El área del triángulo con base " + a + " y altura " + b + " es: " + areaTriangulo(a, b));
             break;
 
             //Caso área círculo
             case 7:
-            a = pedirValor();
+            a = pedirValor2();
             System.out.println("El área del circulo de radio " + a + " es: " + areaCirculo(a));
             break;
 
             //Caso seno, coseno, tangente
             case 8:
-            do {
-                a = pedirValor();
-            } while (a <= -360 || a >= 360);
+            a = pedirValor3();
             System.out.println("El seno de " + a + " es: " + Math.sin(a));
             System.out.println("El coseno de " + a + " es: " + Math.cos(a));
             System.out.println("La tangente de " + a + " es: " + Math.tan(a));
@@ -163,44 +197,46 @@ public class Calculadora_Albert {
         }
     }
 
-    //Método Salir
-    public static void salir () {
-        System.exit(0);
-    }
+    //Método para comprobar si los números introducidos 
 
-    //Método Suma
+    //Método 1 Suma
     public static double suma (double a, double b) {
         return a + b;
     }
 
-    //Método Resta
+    //Método 2 Resta
     public static double resta (double a, double b) {
         return a - b;
     }
 
-    //Método Muliplicación
+    //Método 3 Muliplicación
     public static double mult (double a, double b) {
         return a * b;
     }
 
-    //Método División
+    //Método 4 División
     public static double div (double a, double b) {
         return a / b;
     }
 
-    //Método Área Rectángulo
+    //Método 5 Área Rectángulo
     public static double areaRectangulo (double base, double altura) {
         return base * altura;
     }
 
-    //Método Área Triángulo
+    //Método 6 Área Triángulo
     public static double areaTriangulo (double base, double altura) {
         return base * altura / 2;
     }
 
-    //Método Área Círculo
+    //Método 7 Área Círculo
     public static double areaCirculo (double radio) {
         return Math.PI * radio * radio;
+    }
+
+    //Método Salir
+    public static void salir () {
+        System.exit(0);
     }
 
     //MAIN
