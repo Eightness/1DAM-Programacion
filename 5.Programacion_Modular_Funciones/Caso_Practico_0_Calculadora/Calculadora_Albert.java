@@ -51,9 +51,6 @@ public class Calculadora_Albert {
 
     //Método Menú
     public static void menu () {
-        //Scanner
-        Scanner input = new Scanner(System.in);
-
         //Mostramos menú
         System.out.println();
         System.out.println("1. Suma (A + B)");
@@ -247,7 +244,7 @@ public class Calculadora_Albert {
         
         //BIenvenida
         System.out.println();
-        System.out.println("Bienvenido a la calculadora de Albert.");
+        System.out.println("Bienvenido/a a la calculadora de Albert.");
         
         //Bucle Calculadora
         while (true) {
