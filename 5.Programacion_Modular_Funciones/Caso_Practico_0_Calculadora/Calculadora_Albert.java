@@ -56,8 +56,6 @@ public class Calculadora_Albert {
 
         //Mostramos menú
         System.out.println();
-        System.out.println("Bienvenido a la calculadora de Albert.");
-        System.out.println();
         System.out.println("1. Suma (A + B)");
         System.out.println("2. Resta (A - B)");
         System.out.println("3. Multiplicación (A * B)");
@@ -207,7 +205,12 @@ public class Calculadora_Albert {
 
     //MAIN
     public static void main(String[] args) {
-
+        
+        //BIenvenida
+        System.out.println();
+        System.out.println("Bienvenido a la calculadora de Albert.");
+        
+        //Bucle Calculadora
         while (true) {
             menu();
             opcion(elegirOpcion());
