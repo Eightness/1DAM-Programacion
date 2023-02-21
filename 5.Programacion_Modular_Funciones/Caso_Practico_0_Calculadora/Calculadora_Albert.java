@@ -1,50 +1,3 @@
-//OBJETIVO
-/*
- * Implementar un programa modular (con funciones) que sirva de calculadora.
- */
-//REQUISITOS
-/*
- * El usuario interactuará con la apliación mediante un menú de texto que le permita elegir entre distintas opciones numeradas. 
- * Tras cada operación volverá a mostrarse el menú, a no ser que el usuario decida salir de la aplicación. 
- * Las opciones son:
- * 1. Suma (A + B)
- * 2. Resta (A - B)
- * 3. Multiplicación (A * B)
- * 4. División (A / B)
- * 5. Área de un rectángulo (Base * Altura)
- * 6. Área de un triángulo equilátero (Base * Altura / 2)
- * 7. Área de un círculo (Pi * R²)
- * 8. Seno, Coseno y Tangente (de X)
- * 9. Salir
- * 
- * En las opciones 1 a 4 se aceptarán tanto valores positivos como negativos.
- * 
- * En las opciones 5 a 7 solo se aceptarán valores entre 0 y 1.000.000.
- * 
- * En la opción 8 solo se aceptarán valores entre -360 y 360.
- * 
- * En las opciones 5 a 8 si el usuario no introduce un valor en el rango permitido, 
- * el programa volverá a pedir el valor una y otra vez hasta que introduzca uno válido.
- * 
- */
-//PASOS
-/*
- * 1. Realiza el diseño descendente (top-down) del programa, 
- * dividiendo el problema en subproblemas más pequeños, sucesivamente hasta que sean simples y no sea necesario dividirlos más.
- * 
- * 2. Piensa de qué forma puedes almacenar la información más importante. 
- * ¿Qué variables o estructuras de datos puedes necesitar? ¿De qué tipo serían?
- * 
- * 3. Identifica qué subproblemas convendría programar como una función. 
- * Identifica también si hay subproblemas parecidos que puedan ser resueltos por la misma función mediante parámetros, 
- * o si conviene crear funciones sobrecargadas.
- * 
- * 4. Haz una lista con las funciones que necesitarás programar (no todos los subproblemas necesitan ser funciones). 
- * Incluye la cabecera completa (tipo devuelto, nombre y parámetros) y un comentario explicando qué hace cada una de ellas.
- * 
- * 5. Implementa el programa: primero todas las funciones y por último el main.
- */
-
 import java.util.Scanner;
 
 public class Calculadora_Albert {
@@ -137,7 +90,7 @@ public class Calculadora_Albert {
             b = pedirValor();
             System.out.println(a + " + " + b + " = " + suma(a, b));
             break;
-
+            
             //Caso resta
             case 2:
             a = pedirValor();
@@ -241,11 +194,11 @@ public class Calculadora_Albert {
 
     //MAIN
     public static void main(String[] args) {
-        
-        //BIenvenida
+
+        //Bienvenida
         System.out.println();
         System.out.println("Bienvenido/a a la calculadora de Albert.");
-        
+
         //Bucle Calculadora
         while (true) {
             menu();
