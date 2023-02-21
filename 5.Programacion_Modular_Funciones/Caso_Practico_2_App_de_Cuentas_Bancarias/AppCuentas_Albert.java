@@ -20,6 +20,7 @@ public class AppCuentas_Albert {
         System.out.println("6. Buscar cuenta.");
         System.out.println("7. Mostrar morosos.");
         System.out.println("8. Salir.");
+        System.out.println();
     }
 
     //Método para elegir la opción
@@ -61,6 +62,7 @@ public class AppCuentas_Albert {
 
             //Eliminar cuenta
             case 5:
+            eliminarCuenta(cuentas, numCuentas);
             numCuentas--;
             break;
 
@@ -70,6 +72,7 @@ public class AppCuentas_Albert {
 
             //Mostrar morosos
             case 7:
+            mostrarMorosos(cuentas, saldos, numCuentas);
             break;
 
             //Salir
@@ -123,8 +126,19 @@ public class AppCuentas_Albert {
     }
 
     //Método para comprobar si existe una cuenta
-    public static boolean posicionCuenta(String[] cuentas, int posicion) {
+    public static boolean cuentaExiste(String[] cuentas, int posicion) {
         return (cuentas[posicion] != null);
+    }
+
+    //Método para verificar si existe ya un nombre de cuenta idéntico
+    public static boolean nombreRepetido(String[] cuentas, int numCuentas) {
+        boolean repetido = false;
+        for (int i = 0; i < numCuentas; i++) {
+            if (nombres[i].toLowerCase().equals(nombres[numCuentas].toLowerCase())) {
+                repetido = true;
+            }
+        }
+        return repetido;
     }
 
     //Método 1 Ver cuentas
@@ -147,32 +161,51 @@ public class AppCuentas_Albert {
     }
 
     //Método 3 Retirar dinero
-    public static void reitrarDinero() {
+    public static void retirarDinero() {
 
     }
 
     //Método 4 Agregar cuenta
     public static void agregarCuenta(String[] cuentas, String[] nombres, Double[] saldos, int numCuentas) {
-        nombres[numCuentas] = pedirString();
-        saldos[numCuentas] = pedirDouble();
-
-        cuentas[numCuentas] = nombres[numCuentas] + "\t" + saldos[numCuentas] + " €";
+        if (numCuentas < 100) {
+            do{
+                nombres[numCuentas] = pedirString();
+    
+                if (nombreRepetido(cuentas, numCuentas)) {
+                    System.out.println("Nombre ya existente.");
+                }
+            } while (nombreRepetido(cuentas, numCuentas));
+    
+            saldos[numCuentas] = pedirDouble();
+            cuentas[numCuentas] = nombres[numCuentas] + "\t" + saldos[numCuentas] + " euros.";
+        } else {
+            System.out.println("Máximo número de cuentas alcanzado.");
+        }
     }
 
     //Método 5 Eliminar cuenta
     public static void eliminarCuenta(String[] cuentas, int numCuentas) {
         verCuentas(cuentas, numCuentas);
-        int posicion = pedirInt();
-        
-        if (posicionCuenta(cuentas, posicion)) {
+        int posicion;
+
+        //Comprobamos que haya cuentas creadas
+        if (!noCuentas(cuentas)) {
+            //Pedimos la cuenta que se desea eliminar hasta que sea una posición correcta
+            do{
+                posicion = pedirInt();
+    
+                if (!cuentaExiste(cuentas, posicion)) {
+                    System.out.println("Cuenta inexistente.");
+                }
+            } while (!cuentaExiste(cuentas, posicion));
+            
+            //Condicional para verificar si existe la cuenta
             cuentas[posicion] = null;
             for (int i = posicion + 1; i <= numCuentas; i++) {
                 cuentas[posicion] = cuentas[i];
                 posicion++;
             }
             System.out.println("Cuenta seleccionada eliminada.");
-        } else {
-            System.out.println("No existe esta cuenta.");
         }
     }
 
@@ -182,18 +215,44 @@ public class AppCuentas_Albert {
     }
 
     //Método 7 Mostrar morosos
-    public static void mostrarMorosos() {
+    public static void mostrarMorosos(String[] cuentas, Double[] saldos, int numCuentas) {
+        int count = 0;
 
+        if (!noCuentas(cuentas)) {
+            for (int i = 0; i < numCuentas; i++) {
+                if (saldos[i] < 0) {
+                    System.out.println(i + ". " + cuentas[i]);
+                    System.out.println();
+                    count++;
+                }
+            }
+            if (count == 0) {
+                System.out.println("No hay morosos.");
+            }
+        } else {
+            System.out.println("No hay cuentas.");
+        }
     }
 
     //Método 8 Salir
     public static void salir() {
+        System.out.println();
         System.out.println("Adiós.");
         System.exit(0);
     }
 
     //MAIN
     public static void main(String[] args) {
+
+        //Bienvenida
+        System.out.println();
+        System.out.println("Bienvenido/a a la App de cuentas de Albert.");
+
+        //Bucle App Cuentas
+        while (true) {
+            menu();
+            opcion(eleccion());
+        }
         
     }
 }
