@@ -185,9 +185,7 @@ public class Calculadora_Albert {
             //Caso seno, coseno, tangente
             case 8:
             a = pedirValor3();
-            System.out.println("El seno de " + a + " es: " + Math.sin(a));
-            System.out.println("El coseno de " + a + " es: " + Math.cos(a));
-            System.out.println("La tangente de " + a + " es: " + Math.tan(a));
+            sinCosTan(a);
             break;
 
             //Caso salir
@@ -196,8 +194,6 @@ public class Calculadora_Albert {
             break;
         }
     }
-
-    //Método para comprobar si los números introducidos 
 
     //Método 1 Suma
     public static double suma (double a, double b) {
@@ -234,7 +230,14 @@ public class Calculadora_Albert {
         return Math.PI * radio * radio;
     }
 
-    //Método Salir
+    //Método 8 Seno, Coseno y Tangente
+    public static void sinCosTan (double a) {
+        System.out.println("El seno de " + a + " es: " + Math.sin(a));
+        System.out.println("El coseno de " + a + " es: " + Math.cos(a));
+        System.out.println("La tangente de " + a + " es: " + Math.tan(a));
+    }
+
+    //Método 9 Salir
     public static void salir () {
         System.exit(0);
     }
