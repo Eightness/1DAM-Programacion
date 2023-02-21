@@ -5,7 +5,7 @@ public class AppContactos_Albert {
     //Variables
     public static int contactosMAX = 100;                               //Número máximo de contactos
     public static int numContactos = 0;                                 //Número de contactos añadidos
-    public static String[] contactos = new String[contactosMAX];        //Matriz de los contactos
+    public static String[] contactos = new String[contactosMAX];        //Vector de los contactos
     public static String[] nombres = new String[contactosMAX];          //Vector de los nombres
     public static String[] telefonos = new String[contactosMAX];        //Vector de los teléfonos
     public static String[] correos = new String[contactosMAX];          //Vector de los correos
@@ -38,7 +38,7 @@ public class AppContactos_Albert {
         return eleccion;
     }
 
-    //Método para obtener String
+    //Método para obtener dato
     public static String pedirDato () {
         //Scanner
         Scanner input = new Scanner(System.in);
@@ -49,7 +49,7 @@ public class AppContactos_Albert {
         return dato;
     }
 
-    //Método para obtener posicion
+    //Método para obtener posicion para eliminar
     public static int pedirPosicion () {
         //Scanner
         Scanner input = new Scanner(System.in);
@@ -85,28 +85,42 @@ public class AppContactos_Albert {
 
             //Buscar por nombre
             case 4:
-            buscarEspecifico(null, null);
+            if (contactos[0] != null) {
+                buscarEspecifico(contactos, nombres, numContactos);
+            } else {
+                System.out.println("No hay contactos.");
+            }
             break;
 
             //Buscar por teléfono
             case 5:
-            buscarEspecifico(null, null);
+            if (contactos[0] != null) {
+                buscarEspecifico(contactos, telefonos, numContactos);
+            } else {
+                System.out.println("No hay contactos.");
+            }
             break;
 
             //Buscar por correo
             case 6:
-            buscarEspecifico(null, null);
+            if (contactos[0] != null) {
+                buscarEspecifico(contactos, correos, numContactos);
+            } else {
+                System.out.println("No hay contactos.");
+            }
             break;
 
             //Búsqueda global
             case 7:
-            buscarGlobal(null, null);
+            buscarGlobal(contactos, numContactos);;
             break;
 
             //Salir
             case 8:
             salir();
             break;
+
+            default: System.out.println("Opción inválida.");
         }
     }
 
@@ -153,14 +167,58 @@ public class AppContactos_Albert {
         System.out.println("Contacto seleccionado eliminado.");
     }
 
-    //Método 4 Buscar por nombre 
-    public static String buscarEspecifico (String[] array, String busqueda) {
-        return "resultado";
+    //Método 4, 5, 6 Búsqueda Espefícia 
+    public static void buscarEspecifico (String[] contactos, String[] array, int numContactos) {
+        //Variables
+        int count = 0;
+        String busqueda;
+
+        //Introduce dato
+        System.out.print("Buscar: ");
+        busqueda = pedirDato();
+        System.out.println();
+
+        System.out.println("Resultado:");
+        System.out.println();
+
+        //Bucle para encontrar dato
+        for (int i = 0; i < numContactos; i++) {
+            if (array[i].toLowerCase().contains(busqueda.toLowerCase())) {
+                System.out.println(i + ". " + contactos[i]);
+                System.out.println();
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println("No se han encontrado contactos.");
+        }
     }
 
     //Método 7 Búsqueda Global
-    public static String buscarGlobal (String[] array, String busqueda) {
-        return "resultado";
+    public static void buscarGlobal (String[] contactos, int numContactos) {
+        //Variables
+        int count = 0;
+        String busqueda;
+
+        //Introduce dato
+        System.out.print("Buscar: ");
+        busqueda = pedirDato();
+        System.out.println();
+
+        System.out.println("Resultado:");
+        System.out.println();
+
+        //Bucle para encontrar dato
+        for (int i = 0; i < numContactos; i++) {
+            if (contactos[i].toLowerCase().contains(busqueda.toLowerCase())) {
+                System.out.println(i + ". " + contactos[i]);
+                System.out.println();
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println("No se han encontrado contactos.");
+        }
     }
 
     //Método 8 Salir
@@ -181,12 +239,3 @@ public class AppContactos_Albert {
         }  
     }
 }
-
-//albert sergi duncan 
-//albert null duncan
-
-//albert duncan null
-
-//albert sergi duncan
-//albert null duncan null null null null
-//albert duncan duncan null null null
