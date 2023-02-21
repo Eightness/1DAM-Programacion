@@ -223,6 +223,7 @@ public class AppContactos_Albert {
 
     //Método 8 Salir
     public static void salir () {
+        System.out.println("Adiós.");
         System.exit(0);
     }
 
