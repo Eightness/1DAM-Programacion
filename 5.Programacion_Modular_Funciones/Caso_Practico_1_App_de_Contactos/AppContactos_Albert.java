@@ -33,10 +33,12 @@ public class AppContactos_Albert {
         System.out.print("Elige opción: ");
         int eleccion = input.nextInt();
 
+        System.out.println();
+
         return eleccion;
     }
 
-    //Método para obtener datos
+    //Método para obtener String
     public static String pedirDato () {
         //Scanner
         Scanner input = new Scanner(System.in);
@@ -47,9 +49,20 @@ public class AppContactos_Albert {
         return dato;
     }
 
+    //Método para obtener posicion
+    public static int pedirPosicion () {
+        //Scanner
+        Scanner input = new Scanner(System.in);
+
+        //Obtenemos el dato
+        System.out.print("Introduce contacto que desea eliminar (número): ");
+        int dato = input.nextInt();
+
+        return dato;
+    }
+
     //Método para trabajar con la opción seleccionada
     public static void opcion (int eleccion) {
-
         //Switch para cada opción
         switch (eleccion) {
 
@@ -61,11 +74,13 @@ public class AppContactos_Albert {
             //Agregar contactos
             case 2:
             agregarContacto(contactos, nombres, telefonos, correos, numContactos);
+            numContactos++;
             break;
 
             //Eliminar contactos
             case 3:
-            eliminarContacto(eleccion);
+            eliminarContacto(contactos, pedirPosicion(), numContactos);
+            numContactos--;
             break;
 
             //Buscar por nombre
@@ -100,13 +115,16 @@ public class AppContactos_Albert {
         //Condicional para comprobar si hay algún contacto
         if (contactos[0] != null) {
             for (int i = 0; i < contactos.length; i++) {
-                System.out.println(i + ". " + contactos[i]);
-                System.out.println();
+                if (contactos[i] != null) {
+                    System.out.println(i + ". " + contactos[i]);
+                    System.out.println();
+                } else {
+                    break;
+                }
             }
         } else {
             System.out.println("No hay ningún contacto.");
         }
-
     }
 
     //Método 2 Agregar Contacto
@@ -124,8 +142,15 @@ public class AppContactos_Albert {
     }
 
     //Método 3 Eliminar Contacto
-    public static void eliminarContacto (int pos) {
-
+    public static void eliminarContacto (String[] contactos, int posicion, int numContactos) {
+        //Eliminamos el contacto seleccionado
+        contactos[posicion] = null;
+        //Desplazamos contactos hacia la izquierda
+        for (int i = posicion + 1; i <= numContactos; i++) {
+            contactos[posicion] = contactos [i];
+            posicion++;
+        }
+        System.out.println("Contacto seleccionado eliminado.");
     }
 
     //Método 4 Buscar por nombre 
@@ -145,9 +170,23 @@ public class AppContactos_Albert {
 
     //MAIN
     public static void main(String[] args) {
+        //Bienvenida
+        System.out.println();
+        System.out.println("Bienvenido/a a la App de Contactos de Albert.");
 
-        menu();
-        opcion(eleccion());
-        
+        //Bucle App Contactos
+        while (true) {
+            menu();
+            opcion(eleccion());
+        }  
     }
 }
+
+//albert sergi duncan 
+//albert null duncan
+
+//albert duncan null
+
+//albert sergi duncan
+//albert null duncan null null null null
+//albert duncan duncan null null null
