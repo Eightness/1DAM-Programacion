@@ -85,29 +85,17 @@ public class AppContactos_Albert {
 
             //Buscar por nombre
             case 4:
-            if (contactos[0] != null) {
-                buscarEspecifico(contactos, nombres, numContactos);
-            } else {
-                System.out.println("No hay contactos.");
-            }
+            buscarEspecifico(contactos, nombres, numContactos);
             break;
 
             //Buscar por teléfono
             case 5:
-            if (contactos[0] != null) {
-                buscarEspecifico(contactos, telefonos, numContactos);
-            } else {
-                System.out.println("No hay contactos.");
-            }
+            buscarEspecifico(contactos, telefonos, numContactos);
             break;
 
             //Buscar por correo
             case 6:
-            if (contactos[0] != null) {
-                buscarEspecifico(contactos, correos, numContactos);
-            } else {
-                System.out.println("No hay contactos.");
-            }
+            buscarEspecifico(contactos, correos, numContactos);
             break;
 
             //Búsqueda global
@@ -173,24 +161,28 @@ public class AppContactos_Albert {
         int count = 0;
         String busqueda;
 
-        //Introduce dato
-        System.out.print("Buscar: ");
-        busqueda = pedirDato();
-        System.out.println();
+        if (contactos[0] != null) {
+            //Introduce dato
+            System.out.print("Buscar: ");
+            busqueda = pedirDato();
+            System.out.println();
 
-        System.out.println("Resultado:");
-        System.out.println();
+            System.out.println("Resultado:");
+            System.out.println();
 
-        //Bucle para encontrar dato
-        for (int i = 0; i < numContactos; i++) {
-            if (array[i].toLowerCase().contains(busqueda.toLowerCase())) {
-                System.out.println(i + ". " + contactos[i]);
-                System.out.println();
-                count++;
+            //Bucle para encontrar dato
+            for (int i = 0; i < numContactos; i++) {
+                if (array[i].toLowerCase().contains(busqueda.toLowerCase())) {
+                    System.out.println(i + ". " + contactos[i]);
+                    System.out.println();
+                    count++;
+                }
             }
-        }
-        if (count == 0) {
-            System.out.println("No se han encontrado contactos.");
+            if (count == 0) {
+                System.out.println("No se han encontrado contactos.");
+            }
+        } else {
+            System.out.println("No hay contactos.");
         }
     }
 
@@ -200,24 +192,28 @@ public class AppContactos_Albert {
         int count = 0;
         String busqueda;
 
-        //Introduce dato
-        System.out.print("Buscar: ");
-        busqueda = pedirDato();
-        System.out.println();
+        if (contactos[0] != null) {
+            //Introduce dato
+            System.out.print("Buscar: ");
+            busqueda = pedirDato();
+            System.out.println();
 
-        System.out.println("Resultado:");
-        System.out.println();
+            System.out.println("Resultado:");
+            System.out.println();
 
-        //Bucle para encontrar dato
-        for (int i = 0; i < numContactos; i++) {
-            if (contactos[i].toLowerCase().contains(busqueda.toLowerCase())) {
-                System.out.println(i + ". " + contactos[i]);
-                System.out.println();
-                count++;
+            //Bucle para encontrar dato
+            for (int i = 0; i < numContactos; i++) {
+                if (contactos[i].toLowerCase().contains(busqueda.toLowerCase())) {
+                    System.out.println(i + ". " + contactos[i]);
+                    System.out.println();
+                    count++;
+                }
             }
-        }
-        if (count == 0) {
-            System.out.println("No se han encontrado contactos.");
+            if (count == 0) {
+                System.out.println("No se han encontrado contactos.");
+            }
+        } else {
+            System.out.println("No hay contactos.");
         }
     }
 
