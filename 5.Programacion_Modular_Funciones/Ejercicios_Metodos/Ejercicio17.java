@@ -23,10 +23,13 @@
          //Scanner
          Scanner input = new Scanner(System.in);
 
+         //Variables
+         int x;
+
          do {
              
              System.out.print("Introduce un número entero (pulse 0 para terminar): ");
-             int x = input.nextInt();
+             x = input.nextInt();
 
              if (esPrimo(x)) {
                 System.out.println("El número introducido es primo.");
