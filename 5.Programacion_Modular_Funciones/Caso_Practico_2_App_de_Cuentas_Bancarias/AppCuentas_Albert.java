@@ -68,6 +68,7 @@ public class AppCuentas_Albert {
 
             //Buscar cuenta
             case 6:
+            buscarCuenta(cuentas, numCuentas);
             break;
 
             //Mostrar morosos
@@ -152,7 +153,6 @@ public class AppCuentas_Albert {
                 System.out.println();
             }
         }
-
     }
 
     //Método 2 Ingresar dinero
@@ -210,15 +210,37 @@ public class AppCuentas_Albert {
     }
 
     //Método 6 Buscar cuenta
-    public static void buscarCuenta() {
-
+    public static void buscarCuenta(String[] cuentas, int numCuentas) {
+        int count = 0;
+        
+        if (noCuentas(cuentas)) {
+            System.out.println("No hay cuentas.");
+        } else {
+            String busqueda = pedirString();
+            System.out.println();
+    
+            System.out.println("Resultado: ");
+            System.out.println();
+            for (int i = 0; i < numCuentas; i++) {
+                if (cuentas[i].toLowerCase().contains(busqueda)) {
+                    System.out.println(i + ". " + cuentas[i]);
+                    System.out.println();
+                    count++;
+                }
+            }
+            if (count == 0) {
+                System.out.println("No se han encontrado cuentas.");
+            }
+        }
     }
 
     //Método 7 Mostrar morosos
     public static void mostrarMorosos(String[] cuentas, Double[] saldos, int numCuentas) {
         int count = 0;
 
+        //Condicional para comprobar si hay cuentas
         if (!noCuentas(cuentas)) {
+            //Bucle para iterar sobre las cuentas con saldo negativo
             for (int i = 0; i < numCuentas; i++) {
                 if (saldos[i] < 0) {
                     System.out.println(i + ". " + cuentas[i]);
