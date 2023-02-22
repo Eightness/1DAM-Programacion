@@ -212,17 +212,19 @@ public class AppCuentas_Albert {
     //Método 6 Buscar cuenta
     public static void buscarCuenta(String[] cuentas, int numCuentas) {
         int count = 0;
+        String busqueda; 
         
         if (noCuentas(cuentas)) {
             System.out.println("No hay cuentas.");
-        } else {
-            String busqueda = pedirString();
+        } 
+        if (!noCuentas(cuentas)) {
             System.out.println();
+            busqueda = pedirString();
     
             System.out.println("Resultado: ");
             System.out.println();
             for (int i = 0; i < numCuentas; i++) {
-                if (cuentas[i].toLowerCase().contains(busqueda)) {
+                if (cuentas[i].toLowerCase().contains(busqueda.toLowerCase())) {
                     System.out.println(i + ". " + cuentas[i]);
                     System.out.println();
                     count++;
