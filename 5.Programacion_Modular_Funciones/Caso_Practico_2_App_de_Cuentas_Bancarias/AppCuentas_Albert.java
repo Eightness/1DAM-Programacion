@@ -48,6 +48,7 @@ public class AppCuentas_Albert {
 
             //Ingresar dinero
             case 2:
+            ingresarDinero(cuentas, saldos, nombres, numCuentas);
             break;
 
             //Retirar dinero
@@ -91,7 +92,7 @@ public class AppCuentas_Albert {
         Scanner input = new Scanner(System.in);
 
         //Pedimos cuenta
-        System.out.print("Introduce la cuenta que deseas eliminar (número): ");
+        System.out.print("Introduce la cuenta: ");
         int posicion = input.nextInt();
 
         return posicion;
@@ -134,7 +135,7 @@ public class AppCuentas_Albert {
     //Método para verificar si existe ya un nombre de cuenta idéntico
     public static boolean nombreRepetido(String[] cuentas, int numCuentas) {
         boolean repetido = false;
-        for (int i = 0; i < numCuentas; i++) {
+        for (int i = 0; i < numCuentas; i--) {
             if (nombres[i].toLowerCase().equals(nombres[numCuentas].toLowerCase())) {
                 repetido = true;
             }
@@ -156,8 +157,34 @@ public class AppCuentas_Albert {
     }
 
     //Método 2 Ingresar dinero
-    public static void ingresarDinero() {
+    public static void ingresarDinero(String[] cuentas, Double[] saldos, String[] nombres, int numCuentas) {
+        if (noCuentas(cuentas)) {
+            System.out.println("No hay cuentas.");
+        } else {
+            verCuentas(cuentas, numCuentas);
+            int busqueda = pedirInt();
+            Double incremento;
 
+            if (cuentaExiste(cuentas, busqueda)) {
+                for (int i = 0; i < numCuentas; i++) {
+                    if (busqueda == i) {
+                        do {
+                            incremento = pedirDouble();
+                            
+                            if (incremento < 0) {
+                                System.out.println("No puedes ingresar números negativos.");
+                            }
+                        } while (incremento < 0);
+                        
+                        saldos[i] += incremento;
+                        cuentas[i] = nombres[i] + "\t" + saldos[i] + " euros.";
+                    }
+                }
+                System.out.println("Ingresado correctamente.");
+            } else {
+                System.out.println("No existe la cuenta.");
+            }
+        }
     }
 
     //Método 3 Retirar dinero
