@@ -1,5 +1,6 @@
 /*
- * Escribe una función que muestre por pantalla un triángulo como el del ejemplo. Deberá recibir dos parámetros: el carácter que se desea imprimir y el número de líneas del triángulo.
+ * Escribe una función que muestre por pantalla un triángulo como el del ejemplo. 
+ * Deberá recibir dos parámetros: el carácter que se desea imprimir y el número de líneas del triángulo.
  */
 
  import java.util.Scanner;
@@ -8,25 +9,20 @@
  
      //Método para imprimir un triángulo con un carácter x y un número de líneas n
      public static void trianguloMagico(char x, int n) {
-        
         for (int i = 1; i <= n; i++) {
-
             for (int j = i - 1; j < n; j++) {
                 System.out.print(" ");
             }
-            
             for (int j = 0; j < (i * 2) - 1; j++) {
                 System.out.print(x);
             }
-            
             System.out.println();
         }
-
      }
  
      //Main
      public static void main(String[] args) {
- 
+
          //Scanner
          Scanner input = new Scanner(System.in);
          

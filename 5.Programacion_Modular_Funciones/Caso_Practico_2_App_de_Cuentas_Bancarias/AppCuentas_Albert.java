@@ -135,7 +135,7 @@ public class AppCuentas_Albert {
     //Método para verificar si existe ya un nombre de cuenta idéntico
     public static boolean nombreRepetido(String[] cuentas, int numCuentas) {
         boolean repetido = false;
-        for (int i = 0; i < numCuentas; i--) {
+        for (int i = 0; i < numCuentas; i++) {
             if (nombres[i].toLowerCase().equals(nombres[numCuentas].toLowerCase())) {
                 repetido = true;
             }
@@ -185,6 +185,7 @@ public class AppCuentas_Albert {
                 System.out.println("No existe la cuenta.");
             }
         }
+
     }
 
     //Método 3 Retirar dinero
