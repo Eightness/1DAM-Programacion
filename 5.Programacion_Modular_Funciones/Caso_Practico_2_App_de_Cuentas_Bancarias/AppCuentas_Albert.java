@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class AppCuentas_Albert {
 
     //Variables
+    static Scanner input = new Scanner(System.in);
     static int cuentasMAX = 100;                         //Número máximo de cuentas
     static int numCuentas = 0;                           //Número de cuentas actual
     static String[] cuentas = new String[cuentasMAX];    //Vector para cuentas
@@ -25,9 +26,6 @@ public class AppCuentas_Albert {
 
     //Método para elegir la opción
     public static int eleccion() {
-        //Scanner
-        Scanner input = new Scanner(System.in);
-
         //Elegimos opción
         System.out.print("Elige opción: ");
         int eleccion = input.nextInt();
@@ -97,9 +95,6 @@ public class AppCuentas_Albert {
 
     //Método para obtener Int
     public static int pedirInt() {
-        //Scanner
-        Scanner input = new Scanner(System.in);
-
         //Pedimos cuenta
         System.out.print("Introduce la cuenta: ");
         int posicion = input.nextInt();
@@ -109,9 +104,6 @@ public class AppCuentas_Albert {
 
     //Método para obtener Double
     public static double pedirDouble() {
-        //Scanner
-        Scanner input = new Scanner(System.in);
-
         //Pedimos cantidad
         System.out.print("Introduce cantidad: ");
         double cantidad = input.nextDouble();
@@ -121,9 +113,6 @@ public class AppCuentas_Albert {
 
     //Método para obtener String
     public static String pedirString() {
-        //Scanner
-        Scanner input = new Scanner(System.in);
-
         //Pedimos nombre
         System.out.print("Introduce nombre: ");
         String nombre = input.nextLine();
