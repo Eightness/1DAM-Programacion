@@ -13,7 +13,7 @@ public class Ahorcado_Albert {
     public static String str = palabras[(int)(Math.random() * 50)].toUpperCase();
     public static char[] palabraSeleccionada = {str.charAt(0), str.charAt(1), str.charAt(2), str.charAt(3), str.charAt(4),};
     public static char[] letras = {'-', '-', '-', '-', '-'};
-    public static char[] letrasUsadas = new char[6];
+    public static char[] letrasUsadas = new char[25];
     public static int vidas = 5;
     public static Scanner input = new Scanner(System.in);
     public static int numLetras = 0;
