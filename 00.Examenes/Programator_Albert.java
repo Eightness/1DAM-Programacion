@@ -174,7 +174,7 @@ public class Programator_Albert {
         String[] numeros = new String[n];
         int contadorCeros = 0;
         int[] ceros = new int[n];
-        int[] sorted = new int[n];
+        //int[] sorted = new int[n];
 
         //Rellenamos vectores
         for (int i = 0; i < n; i++) {
