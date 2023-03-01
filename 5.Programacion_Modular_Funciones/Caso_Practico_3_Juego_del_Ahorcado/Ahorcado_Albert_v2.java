@@ -8,7 +8,7 @@ public class Ahorcado_Albert_v2 {
     public static char[] word = new char[selectedWord.length()];
     public static char[] hiddenword = new char[selectedWord.length()];
     public static char[] usedLetters = new char[25];
-    public static int lifes = 5;
+    public static int lives = 5;
     public static int turns = 0;
     public static char userLetter;
 
@@ -67,7 +67,7 @@ public class Ahorcado_Albert_v2 {
             return true;
         }
 
-        if (lifes == 0) {
+        if (lives == 0) {
             System.out.println();
             System.out.println("¡HAS PERDIDO! :(");
             System.out.println("La palabra era: " + selectedWord);
@@ -134,7 +134,7 @@ public class Ahorcado_Albert_v2 {
             System.out.println();
             System.out.println();
             System.out.println("¡HAS FALLADO! :(");
-            lifes--;
+            lives--;
         }
         //We add user letter to used letters array
         usedLetters[turns] = userLetter;
@@ -145,7 +145,7 @@ public class Ahorcado_Albert_v2 {
         System.out.println();
         System.out.print("Palabra: "); printHiddenWord();
         System.out.println();
-        System.out.print("Vidas: " + lifes + "\tLetras usadas: "); printUsedLetters();
+        System.out.print("Vidas: " + lives + "\tLetras usadas: "); printUsedLetters();
         System.out.println();
         System.out.println();
     }
