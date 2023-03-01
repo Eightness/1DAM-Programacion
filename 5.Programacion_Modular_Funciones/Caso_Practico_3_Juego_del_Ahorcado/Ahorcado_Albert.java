@@ -26,17 +26,32 @@ public class Ahorcado_Albert {
         System.out.print("Vidas: " + vidas + "\tLetras usadas: "); imprimirLetrasUsadas();
         System.out.println();
         gameOver();
-        actualizarLetras(input());
+        input();
     }
 
     //Input
-    public static char input() {
-        System.out.print("¿Qué letra probamos? ");
-        char letraElegida = input.next().toUpperCase().charAt(0);
+    public static void input() {
+        boolean interruptor = false;
+        char letraElegida;
+        do {
+            interruptor = false;
+            System.out.print("¿Qué letra probamos? ");
+            letraElegida = input.next().toUpperCase().charAt(0);
 
+            for (int i = 0; i < numLetras; i++) {
+                if (letrasUsadas[i] == letraElegida) {
+                    interruptor = true;
+                }
+            }
+
+            if (interruptor) {
+                System.out.println("Ya has introducido esa letra, prueba otra.");
+                System.out.println();
+            }
+        } while (interruptor);
+
+        actualizarLetras(letraElegida);
         numLetras++;
-
-        return letraElegida;
     }
 
     //Función para actualizar los vectores letras y letras usadas
@@ -81,18 +96,20 @@ public class Ahorcado_Albert {
 
     //Función para descubir si el juego ha terminado
     public static void gameOver () {
-        int count = 0;
+        boolean interruptor = false;
         if (vidas == 0) {
             System.out.println("¡HAS PERDIDO! :(");
+            System.out.println();
             System.exit(0);
         }
         for (int i = 0; i < letras.length; i++) {
-            if (letras[i] != '-') {
-                count ++;
+            if (letras[i] == '-') {
+                interruptor = true;
             }
         }
-        if (count == 5) {
+        if (!interruptor) {
             System.out.println("¡HAS GANADO! :D");
+            System.out.println();
             System.exit(0);
         }
     }
