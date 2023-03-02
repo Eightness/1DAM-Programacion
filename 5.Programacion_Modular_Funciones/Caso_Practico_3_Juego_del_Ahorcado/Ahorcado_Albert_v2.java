@@ -126,12 +126,14 @@ public class Ahorcado_Albert_v2 {
     public static void update(char userLetter) {
         if (foundLetter()) {
             System.out.println();
+            System.out.println("--------------------------");
             System.out.println();
             System.out.println("¡HAS ACERTADO! :)");
             //Discover user letter
             discoverLetter(userLetter);
         } else {
             System.out.println();
+            System.out.println("--------------------------");
             System.out.println();
             System.out.println("¡HAS FALLADO! :(");
             lives--;
