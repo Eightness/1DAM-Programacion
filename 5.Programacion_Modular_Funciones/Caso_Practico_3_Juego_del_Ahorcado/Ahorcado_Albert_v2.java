@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Ahorcado_Albert_v2 {
 
+    //Variables
     public static Scanner input = new Scanner(System.in);
     public static String[] words = {"hola", "adios", "casa", "coche", "perro", "gato", "raton", "arbol", "sol", "luna", "agua", "fuego", "tierra", "aire", "manzana", "naranja", "limon", "platano", "fresa", "frambuesa", "melocoton", "sandia", "uva", "leche", "cafe", "te", "azucar", "sal", "pimienta", "aceite", "vinagre", "arroz", "pasta", "pan", "carne", "pescado", "pollo", "huevos", "queso", "yogur", "miel", "mantequilla", "chocolate", "caramelo", "galletas", "bizcocho", "helado", "cocacola", "cerveza", "vino"};
     public static String selectedWord = words[(int)(Math.random() * 50)].toUpperCase();
@@ -45,20 +46,17 @@ public class Ahorcado_Albert_v2 {
     public static void setUp() {
         fillWord();
         fillHiddenWord();
-        System.out.println();
         System.out.println("¡COMIENZA EL JUEGO DEL AHORCADO! By Albert");
     }
 
     //Function to check if game is over
     public static boolean gameOver() {
         int hyphenCount = 0;
-
         for (int i = 0; i < hiddenword.length; i++) {
             if (hiddenword[i] == '-') {
                 hyphenCount++;
             }
         }
-
         if (hyphenCount == 0) {
             System.out.println();
             System.out.println("¡HAS GANADO! :D");
@@ -66,7 +64,6 @@ public class Ahorcado_Albert_v2 {
             System.out.println();
             return true;
         }
-
         if (lives == 0) {
             System.out.println();
             System.out.println("¡HAS PERDIDO! :(");
@@ -74,7 +71,6 @@ public class Ahorcado_Albert_v2 {
             System.out.println();
             return true;
         }
-
         return false;
     }
 
@@ -85,19 +81,16 @@ public class Ahorcado_Albert_v2 {
             check = false;
             System.out.print("¿Qué letra probamos? ");
             userLetter = input.nextLine().toUpperCase().charAt(0);
-
             for (int i = 0; i <= turns; i++) {
                 if (usedLetters[i] == userLetter) {
                     check = true;
                 }
             }
-
             if (check) {
                 System.out.println();
                 System.out.println("Ya has probado esa letra, prueba otra.");
             }
         } while (check);
-
         turns++;
         return userLetter;
     }
@@ -109,7 +102,6 @@ public class Ahorcado_Albert_v2 {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -161,12 +153,9 @@ public class Ahorcado_Albert_v2 {
 
     //MAIN
     public static void main(String[] args) {
-
         setUp();
-
         while (!gameOver()) {
             output();
         }
-        
     }
 }
