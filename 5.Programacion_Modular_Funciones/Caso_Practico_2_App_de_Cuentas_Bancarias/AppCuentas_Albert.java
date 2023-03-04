@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class AppCuentas_Albert {
 
     //Variables
-    static Scanner input = new Scanner(System.in);
-    static int cuentasMAX = 100;                         //Número máximo de cuentas
-    static int numCuentas = 0;                           //Número de cuentas actual
-    static String[] cuentas = new String[cuentasMAX];    //Vector para cuentas
-    static String[] nombres = new String[cuentasMAX];    //Vector para los nombres
-    static Double[] saldos = new Double[cuentasMAX];     //Vector para los saldos
+    public static Scanner input = new Scanner(System.in);
+    public static int cuentasMAX = 100;                         //Número máximo de cuentas
+    public static int numCuentas = 0;                           //Número de cuentas actual
+    public static String[] cuentas = new String[cuentasMAX];    //Vector para cuentas
+    public static String[] nombres = new String[cuentasMAX];    //Vector para los nombres
+    public static Double[] saldos = new Double[cuentasMAX];     //Vector para los saldos
 
     //Método para mostrar menú
     public static void menu() {
@@ -114,6 +114,7 @@ public class AppCuentas_Albert {
     //Método para obtener String
     public static String pedirString() {
         //Pedimos nombre
+        input.nextLine();
         System.out.print("Introduce nombre: ");
         String nombre = input.nextLine();
 
