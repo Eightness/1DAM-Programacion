@@ -36,9 +36,9 @@ public class AppCuentas_Albert {
     }
 
     //Método para trabajar con las diferentes opciones
-    public static void opcion(int eleccion) {
+    public static void opcion() {
         //Switch general
-        switch (eleccion) {
+        switch (eleccion()) {
             //Ver cuentas
             case 1:
             verCuentas();
@@ -331,7 +331,7 @@ public class AppCuentas_Albert {
         //Bucle App Cuentas
         while (true) {
             menu();
-            opcion(eleccion());
+            opcion();
         }
         
     }
