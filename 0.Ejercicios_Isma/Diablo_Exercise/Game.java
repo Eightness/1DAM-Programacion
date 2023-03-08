@@ -34,9 +34,14 @@ public class Game {
         return player.getHealth() <= 0;
     }
 
-    //Functino to see if enemy is dead
+    //Function to see if enemy is dead
     public boolean enemyIsDead() {
         return enemy.getHealth() <= 0;
+    }
+
+    //Function to see if player's mana is enough to use a spell
+    public boolean hasEnoughMana() {
+        return player.getMana() >= player.getSpell(0).getManaCost();
     }
 
     //Function to fight
@@ -53,7 +58,7 @@ public class Game {
                 //Player attacks first
                 case 0:
                 System.out.println(player.getPlayerName() + " attacks first!");
-                if (player.getMana() >= player.getSpell(0).getManaCost()) {
+                if (hasEnoughMana()) {
                     System.out.println(player.getPlayerName() + " uses a spell!");
                     enemy.setHealth(enemy.getHealth() - player.getSpell(0).getDamage());
                     System.out.println(enemy.getEnemyName() + " has received " + player.getSpell(0).getDamage() + " damage!");
@@ -95,7 +100,7 @@ public class Game {
                 }
                 System.out.println();
                 System.out.println(player.getPlayerName() + " attacks now!");
-                if (player.getMana() >= player.getSpell(0).getManaCost()) {
+                if (hasEnoughMana()) {
                     System.out.println(player.getPlayerName() + " uses a spell!");
                     enemy.setHealth(enemy.getHealth() - player.getSpell(0).getDamage());
                     System.out.println(enemy.getEnemyName() + " has received " + player.getSpell(0).getDamage() + " damage!");
