@@ -41,6 +41,7 @@ public class Game {
         loadSpells();
         player1 = new Player("Albert");
         player1 = new Player("Marra");
+
         
     }
     
