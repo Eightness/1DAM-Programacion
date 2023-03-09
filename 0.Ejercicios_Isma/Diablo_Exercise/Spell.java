@@ -1,16 +1,23 @@
 public class Spell {
     
     //Class Atributes
-    private String spellName;
+    private String name;
     private int damage;
     private int cooldown;
     private int manaCost;
 
     //---------------------------------------------------------------------------
 
-    //Constructor
-    public Spell(String spellName, int damage, int cooldown, int manaCost) {
-        this.spellName = spellName;
+    //Constructors
+
+    //Empty constructor
+    public Spell() {
+
+    }
+
+    //Full constructor
+    public Spell(String name, int damage, int cooldown, int manaCost) {
+        this.name = name;
         this.damage = damage;
         this.cooldown = cooldown;
         this.manaCost = manaCost;
@@ -21,22 +28,27 @@ public class Spell {
     //Functions
 
     //Function to show spell attributes
-    public void showSpellAttributes() {
-        System.out.println("Spell name: " + getSpellName());
+    public void showAttributes() {
+        System.out.println("Spell name: " + getName());
         System.out.println("Base damage input: " + getDamage());
         System.out.println("Base cooldown: " + getCooldown());
         System.out.println("Base mana cost: " + getManaCost());
     }
 
+    //Function to cast spell
+    public void castSpell() {
+        System.out.println("Casting " + getName() + "...");
+    }
+
     //---------------------------------------------------------------------------
 
     //Setters and Getters
-    public void setSpellName(String spellName) {
-        this.spellName = spellName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSpellName() {
-        return this.spellName;
+    public String getName() {
+        return this.name;
     }
 
     public void setDamage(int damage) {
