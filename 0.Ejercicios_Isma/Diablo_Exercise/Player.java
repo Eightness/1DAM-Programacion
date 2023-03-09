@@ -49,13 +49,6 @@ public class Player {
         System.out.println("Attack damage: " + getAttackDamage());
     }
 
-    //Function to get assign 6 spells
-    public void getSpells() {
-        for (int i = 0; i < numSpells; i++) {
-            
-        }
-    }
-
     //Function to show current spells
     public void showSpells() {
         System.out.println("These are the spells available:");
@@ -68,8 +61,8 @@ public class Player {
     }
 
     //Function to cast a spell
-    public void castSpell(Spell spell) {
-        spell.castSpell();
+    public void castSpell(int index) {
+        this.spells[index].castSpell();
     }
 
     //Function to see if player has mana
@@ -80,6 +73,11 @@ public class Player {
     //Function to see if player has enough mana
     public boolean hasEnoughMana(int index) {
         return getMana() >= getSpell(index).getManaCost();
+    }
+
+    //Function to see if a player is dead
+    public boolean isDead(int health) {
+        return health <= 0;
     }
 
     //---------------------------------------------------------------------------
