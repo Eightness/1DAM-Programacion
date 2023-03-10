@@ -27,11 +27,6 @@ public class Character {
 
     //---------------------------------------------------------------------------
 
-    //Function to attack
-    public int attack(int damage) {
-        return damage;
-    }
-
     //Function to take damage
     public void takeDamage(int amount) {
         this.health -= amount;
