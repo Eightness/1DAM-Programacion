@@ -1,3 +1,4 @@
+//Class Spell
 public class Spell {
     
     //Class Atributes
@@ -29,10 +30,10 @@ public class Spell {
 
     //Function to show spell attributes
     public void showAttributes() {
-        System.out.println("Spell name: " + getName());
-        System.out.println("Base damage input: " + getDamage());
-        System.out.println("Base cooldown: " + getCooldown());
-        System.out.println("Base mana cost: " + getManaCost());
+        System.out.println("Name: " + getName());
+        System.out.println("Damage: " + getDamage());
+        System.out.println("Cooldown: " + getCooldown());
+        System.out.println("Mana cost: " + getManaCost());
     }
 
     //Function to cast spell

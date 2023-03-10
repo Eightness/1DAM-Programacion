@@ -1,14 +1,15 @@
-public class Player {
+import java.util.Arrays;
+
+//Subclass Player
+public class Player extends Character {
 
     //Variables
     private final int numSpells = 6;
 
     //Class Atributes
-    private String name;
-    private int health;
-    private int mana;
     private int attackDamage;
-    private Spell[] spells;
+    private int mana;
+    private Spell spell;
 
     //---------------------------------------------------------------------------
 
@@ -20,49 +21,43 @@ public class Player {
     }
 
     //Full constructor
-    public Player(String name, int health, int mana, int attackDamage, Spell[] spells) {
-        this.name = name;
-        this.health = health;
+    public Player(String name, int health, int mana, int attackDamage, Spell spell) {
+        super(name, health);
         this.mana = mana;
         this.attackDamage = attackDamage;
-        this.spells = spells;
+        this.spell = null;
     }
 
-    //Constructor (only name)
-    public Player(String name) {
-        this.name = name;
-        this.health = 100;
+    //Constructor (only name and health)
+    public Player(String name, int health) {
+        super(name, health);
         this.mana = 100;
         this.attackDamage = 10;
-        this.spells = new Spell[numSpells];
+        this.spell = null;
     }
 
     //---------------------------------------------------------------------------
 
     //Functions
 
-    //Function to show player attributes
+    //Function to show player attributes (overriding function in superclass Character)
+    @Override
     public void showAttributes() {
-        System.out.println("Player name: " + getName());
-        System.out.println("Health: " + getHealth());
-        System.out.println("Mana: " + getMana());
+        super.showAttributes();
         System.out.println("Attack damage: " + getAttackDamage());
+        System.out.println("Mana: " + getMana());
+        showSpell();
     }
 
     //Function to show current spells
-    public void showSpells() {
-        System.out.println("These are the spells available:");
-        for (int i = 0; i < numSpells; i++) {
-            if (spells[i] == null) {
-                continue;
-            }
-            spells[i].showAttributes();
+    public void showSpell() {
+        System.out.println("Spell: ");
+            spell.showAttributes();
         }
-    }
 
     //Function to cast a spell
-    public void castSpell(int index) {
-        this.spells[index].castSpell();
+    public void castSpell() {
+        this.spell.castSpell();
     }
 
     //Function to see if player has mana
@@ -71,34 +66,13 @@ public class Player {
     }
 
     //Function to see if player has enough mana
-    public boolean hasEnoughMana(int index) {
-        return getMana() >= getSpell(index).getManaCost();
-    }
-
-    //Function to see if a player is dead
-    public boolean isDead(int health) {
-        return health <= 0;
+    public boolean hasEnoughMana() {
+        return getMana() >= this.spell.getManaCost();
     }
 
     //---------------------------------------------------------------------------
 
     //Setters and Getters
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
-
     public void setMana(int mana) {
         this.mana = mana;
     }
@@ -115,12 +89,12 @@ public class Player {
         return this.attackDamage;
     }
     
-    public void setSpell(int index, Spell spell) {
-        this.spells[index] = spell;
+    public void setSpell(Spell spell) {
+        this.spell = spell;
     }
     
-    public Spell getSpell(int index) {
-        return this.spells[index];
+    public Spell getSpell() {
+        return this.spell;
     }
 
 }
