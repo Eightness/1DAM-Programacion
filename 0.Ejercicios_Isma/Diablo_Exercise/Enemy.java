@@ -2,7 +2,6 @@
 public class Enemy extends Character {
 
     //Class Atributes
-    private int attackDamage;
 
     //---------------------------------------------------------------------------
 
@@ -15,14 +14,12 @@ public class Enemy extends Character {
 
     //Full constructor
     public Enemy(String name, int health, int attackDamage) {
-        super(name, health);
-        this.attackDamage = attackDamage;
+        super(name, health, attackDamage);
     }
 
     //Constructor (only name and health)
     public Enemy(String name, int health) {
-        super(name, health);
-        this.attackDamage = 10;
+        super(name, health, 0);
     }
 
     //---------------------------------------------------------------------------
@@ -39,12 +36,6 @@ public class Enemy extends Character {
     //---------------------------------------------------------------------------
 
     //Setters and Getters
-    public void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
-    }
 
-    public int getAttackDamage() {
-        return this.attackDamage;
-    }
 
 }

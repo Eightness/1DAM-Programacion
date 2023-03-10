@@ -2,7 +2,6 @@
 public class Player extends Character {
 
     //Class Atributes
-    private int attackDamage;
     private int mana;
     private Spell spell;
 
@@ -16,18 +15,16 @@ public class Player extends Character {
     }
 
     //Full constructor
-    public Player(String name, int health, int mana, int attackDamage, Spell spell) {
-        super(name, health);
+    public Player(String name, int health, int attackDamage, int mana, Spell spell) {
+        super(name, health, attackDamage);
         this.mana = mana;
-        this.attackDamage = attackDamage;
-        this.spell = null;
+        this.spell = spell;
     }
 
     //Constructor (only name and health)
     public Player(String name, int health) {
-        super(name, health);
+        super(name, health, 0);
         this.mana = 100;
-        this.attackDamage = 10;
         this.spell = null;
     }
 
@@ -42,6 +39,19 @@ public class Player extends Character {
         System.out.println("Attack damage: " + getAttackDamage());
         System.out.println("Mana: " + getMana());
         showSpell();
+    }
+
+    //Function to attack
+    @Override
+    public void attack(Character target) {
+        if (!hasEnoughMana())
+        {
+            super.attack(target);
+            return;
+        }
+
+        System.out.printf("%s casts %s on target %s and deals %d damage%n", getName(), getSpell().getName(), target.getName(), getSpell().getDamage());
+        target.takeDamage(getSpell().getDamage());
     }
 
     //Function to show current spells
@@ -74,14 +84,6 @@ public class Player extends Character {
 
     public int getMana() {
         return this.mana;
-    }
-
-    public void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
-    }
-
-    public int getAttackDamage() {
-        return this.attackDamage;
     }
     
     public void setSpell(Spell spell) {

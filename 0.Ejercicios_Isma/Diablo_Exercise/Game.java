@@ -9,7 +9,6 @@ public class Game {
 
     //Empty constructor
     public Game() {
-
     }
 
     //---------------------------------------------------------------------------
@@ -41,27 +40,27 @@ public class Game {
     }
 
     public void startGame() {
-        while (true) {
-            if (player1.hasEnoughMana()) {
-                player2.takeDamage(player1.getSpell().getDamage());
-            } else {
-                player2.takeDamage(player1.getAttackDamage());
-            }
-    
-            if(player2.isDead()) {
-                break;
-            }
-            
-            if (player2.hasEnoughMana()) {
-                player1.takeDamage(player2.getSpell().getDamage());
-            } else {
-                player1.takeDamage(player2.getAttackDamage());
-            }
-    
-            if (player1.isDead()) {
-                break;
-            }
+        battle(player1, player2);
+    }
+
+    public void battle(Character character1, Character character2) {
+        Character attacker, defender, helper;
+
+        int rand = (int)(Math.random() * 2);
+        if (rand == 0) {
+            attacker = character1;
+            defender = character2;
+        } else {
+            attacker = character2;
+            defender = character1;
+        }
+
+        while (!attacker.isDead() && !defender.isDead()) {
+            attacker.attack(defender);
+
+            helper = attacker;
+            attacker = defender;
+            defender = helper;
         }
     }
-    
 }
