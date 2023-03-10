@@ -1,10 +1,5 @@
-import java.util.Arrays;
-
 //Subclass Player
 public class Player extends Character {
-
-    //Variables
-    private final int numSpells = 6;
 
     //Class Atributes
     private int attackDamage;
