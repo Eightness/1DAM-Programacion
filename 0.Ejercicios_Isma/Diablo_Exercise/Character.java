@@ -27,11 +27,14 @@ public class Character {
 
     //---------------------------------------------------------------------------
 
-    //Functions
+    //Function to attack
+    public int attack(int damage) {
+        return damage;
+    }
 
     //Function to take damage
     public void takeDamage(int amount) {
-
+        this.health -= amount;
     }
 
     //Function to see if the character is dead
