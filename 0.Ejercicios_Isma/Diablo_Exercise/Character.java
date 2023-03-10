@@ -1,5 +1,6 @@
 //Superclass Character
 public class Character {
+
     //Superclass attributes
     private String name;
     private int health;
