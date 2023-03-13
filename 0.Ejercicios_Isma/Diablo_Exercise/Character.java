@@ -4,6 +4,7 @@ public class Character {
     //Superclass attributes
     private String name;
     private int health;
+    private int attackDamage;
 
     //---------------------------------------------------------------------------
 
@@ -14,9 +15,10 @@ public class Character {
     }
 
     //Full constructor
-    public Character(String name, int health) {
+    public Character(String name, int health, int attackDamage) {
         this.name = name;
         this.health = health;
+        this.attackDamage = attackDamage;
     }
 
     //Constructor (only name)
@@ -26,6 +28,13 @@ public class Character {
     }
 
     //---------------------------------------------------------------------------
+
+    //Function to attack
+    public void attack(Character target) {
+        System.out.printf("%s attacks %s and deals %d damage%n", getName(), target.getName(), attackDamage);
+
+        target.takeDamage(attackDamage);
+    }
 
     //Function to take damage
     public void takeDamage(int amount) {
@@ -63,4 +72,11 @@ public class Character {
         return this.health;
     }
     
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+    public int getAttackDamage() {
+        return this.attackDamage;
+    }
 }
