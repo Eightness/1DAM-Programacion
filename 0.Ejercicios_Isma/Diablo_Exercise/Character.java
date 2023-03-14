@@ -25,6 +25,7 @@ public class Character {
     public Character(String name) {
         this.name = name;
         this.health = 100;
+        this.attackDamage = 10;
     }
 
     //---------------------------------------------------------------------------
