@@ -12,7 +12,7 @@ public class Player extends Character {
 
     //Empty constructor
     public Player() {
-
+        
     }
 
     //Full constructor
