@@ -4,6 +4,7 @@ public class Player extends Character {
     //Class Atributes
     private int mana;
     private Spell spell;
+    private Inventory inventory;
 
     //---------------------------------------------------------------------------
 
@@ -15,17 +16,19 @@ public class Player extends Character {
     }
 
     //Full constructor
-    public Player(String name, int health, int attackDamage, int mana, Spell spell) {
+    public Player(String name, int health, int attackDamage, int mana, Spell spell, Inventory inventory) {
         super(name, health, attackDamage);
         this.mana = mana;
         this.spell = spell;
+        this.inventory = inventory;
     }
 
-    //Constructor (only name and health)
-    public Player(String name, int health) {
-        super(name, health, 0);
-        this.mana = 100;
+    //Constructor (without spell nor inventory)
+    public Player(String name, int health, int attackDamage, int mana) {
+        super(name, health, attackDamage);
+        this.mana = mana;
         this.spell = null;
+        this.inventory = null;
     }
 
     //---------------------------------------------------------------------------
@@ -39,6 +42,7 @@ public class Player extends Character {
         System.out.println("Attack damage: " + getAttackDamage());
         System.out.println("Mana: " + getMana());
         showSpell();
+        showInventory();
     }
 
     //Function to attack
@@ -57,9 +61,15 @@ public class Player extends Character {
     //Function to show current spells
     public void showSpell() {
         System.out.println("Spell: ");
-            spell.showAttributes();
-        }
+            this.spell.showAttributes();
+    }
 
+    //Function to show inventory
+    public void showInventory() {
+        System.out.println("Inventory: ");
+        this.inventory.showInventory();
+    }
+ 
     //Function to cast a spell
     public void castSpell() {
         this.spell.castSpell();

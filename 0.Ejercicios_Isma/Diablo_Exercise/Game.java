@@ -32,8 +32,8 @@ public class Game {
 
     //Function to initialize everything
     public void init() {
-        player1 = new Player("Albert", 100);
-        player2 = new Player("Marrahy", 100);
+        player1 = new Player("Albert", 100, 10, 100);
+        player2 = new Player("Marrahy", 100, 10, 100);
         loadSpells();
         assignSpell(player1);
         assignSpell(player2);
