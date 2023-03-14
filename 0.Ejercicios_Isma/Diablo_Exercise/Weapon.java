@@ -45,9 +45,9 @@ public class Weapon extends Item {
         System.out.println("Durability: " + getDurability());
     }
 
-    //Function to see if the item is broken
+    //Function to see if the weapon is broken
     public boolean isBroken() {
-        if (durability == 0) {
+        if (getDurability() == 0) {
             return true;
         } else {
             return false;
