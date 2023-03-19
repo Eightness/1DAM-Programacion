@@ -28,7 +28,7 @@ public class Player extends Character {
         super(name, health, attackDamage);
         this.mana = mana;
         this.spell = null;
-        this.inventory = null;
+        this.inventory = new Inventory();
     }
 
     //---------------------------------------------------------------------------
