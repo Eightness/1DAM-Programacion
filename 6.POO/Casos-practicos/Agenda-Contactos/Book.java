@@ -22,6 +22,11 @@ public class Book {
         do {
             System.out.print("Introduce nombre: ");
             inputName = input.nextLine();
+            if (nameExists(inputName)) {
+                System.out.println();
+                System.out.println("Nombre ya existente.");
+                System.out.println();
+            }
         } while (nameExists(inputName)); 
         return inputName;
     }
@@ -45,6 +50,21 @@ public class Book {
         System.out.print("Buscar: ");
         String inputSearch = input.nextLine();
         return inputSearch;
+    }
+
+    //Function to get the input for the remove option
+    public static int inputRemove() {
+        int inputRemove;
+        do {
+            System.out.print("¿Qué contacto desea eliminar? ");
+            inputRemove = input.nextInt();
+            if (inputRemove < 0 || inputRemove >= numContacts) {
+                System.out.println();
+                System.out.println("El contacto seleccionado no existe.");
+                System.out.println();
+            }
+        } while (inputRemove < 0 || inputRemove >= numContacts);
+        return inputRemove;
     }
 
     //Function to show contacts
@@ -76,12 +96,40 @@ public class Book {
 
     //Function to remove a contact
     public void removeContact() {
-
+        if (isEmpty()) {
+            System.out.println();
+            System.out.println("No hay contactos.");
+        } else {
+            showContacts();
+            System.out.println();
+            int remove = inputRemove();
+            contacts[remove] = null;
+            for (int i = remove; i < numContacts; i++) {
+                contacts[i] = contacts[i + 1];
+            }
+            numContacts--;
+            System.out.println();
+            System.out.println("Contacto eliminado con éxito.");
+        }
     }
 
     //Function to search for a contact (by name, phone, mail or overall)
     public void searchContact(int option) {
+        switch(option) {
+            case 4:
+            break;
 
+            case 5:
+            break;
+
+            case 6:
+            break;
+
+            case 7:
+            break;
+
+            default: System.out.println("Opción desconocida.");
+        }
     }
 
     //Function to see if the book is empty
