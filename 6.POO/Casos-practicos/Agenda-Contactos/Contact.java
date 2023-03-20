@@ -35,42 +35,6 @@ public class Contact {
         return contact;
     }
 
-    //Function to see if a determined String is found
-    public boolean isFound(String search) {
-        if (getName().contains(search) || getPhone().contains(search) || getMail().contains(search)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //Function to see if a determined String is found in its name
-    public boolean nameFound(String search) {
-        if (getName().contains(search)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //Function to see if a determined String is found in its phone
-    public boolean phoneFound(String search) {
-        if (getPhone().contains(search)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //Function to see if a determined String is found in its mail
-    public boolean mailFound(String search) {
-        if (getMail().contains(search)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     //Function to see if a name already exists in the contact
     public boolean sameName(String name) {
         if (getName().equalsIgnoreCase(name)) {
