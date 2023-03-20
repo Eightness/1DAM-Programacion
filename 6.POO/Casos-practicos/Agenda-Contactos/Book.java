@@ -88,7 +88,7 @@ public class Book {
             System.out.println("La agenda está llena.");
         } else {
             System.out.println();
-            input.nextLine();
+            input.nextLine();   //Cleaning buffer due to problems when removing a contact and then trying to add a new one
             contacts[numContacts] = new Contact(inputName(), inputPhone(), inputMail());
             numContacts++;
             System.out.println();
