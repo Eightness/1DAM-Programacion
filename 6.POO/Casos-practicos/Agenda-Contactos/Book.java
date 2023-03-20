@@ -76,6 +76,7 @@ public class Book {
             System.out.println();
             for (int i = 0; i < numContacts; i++) {
                 System.out.println(i + ". " + contacts[i].showContact());
+                System.out.println();
             }
         }
     }
@@ -87,6 +88,7 @@ public class Book {
             System.out.println("La agenda está llena.");
         } else {
             System.out.println();
+            input.nextLine();
             contacts[numContacts] = new Contact(inputName(), inputPhone(), inputMail());
             numContacts++;
             System.out.println();
@@ -104,7 +106,7 @@ public class Book {
             System.out.println();
             int remove = inputRemove();
             contacts[remove] = null;
-            for (int i = remove; i < numContacts; i++) {
+            for (int i = remove; i < (numContacts - 1); i++) {
                 contacts[i] = contacts[i + 1];
             }
             numContacts--;
@@ -115,20 +117,72 @@ public class Book {
 
     //Function to search for a contact (by name, phone, mail or overall)
     public void searchContact(int option) {
-        switch(option) {
-            case 4:
-            break;
-
-            case 5:
-            break;
-
-            case 6:
-            break;
-
-            case 7:
-            break;
-
-            default: System.out.println("Opción desconocida.");
+        if (isEmpty()) {
+            System.out.println();
+            System.out.println("No hay contactos.");
+        } else {
+            System.out.println();
+            String search = inputSearch().toLowerCase();
+            boolean check = false;
+            switch(option) {
+                //Search by name
+                case 4:
+                for (int i = 0; i < numContacts; i++) {
+                    if (contacts[i].getName().toLowerCase().contains(search)) {
+                        System.out.println(i + ". " + contacts[i].showContact());
+                        System.out.println();
+                        check = true;
+                    }
+                }
+                if (!check) {
+                    System.out.println("No se han encontrado coincidencias.");
+                }
+                break;
+                
+                //Search by phone
+                case 5:
+                for (int i = 0; i < numContacts; i++) {
+                    if (contacts[i].getPhone().toLowerCase().contains(search)) {
+                        System.out.println(i + ". " + contacts[i].showContact());
+                        System.out.println();
+                        check = true;
+                    }
+                }
+                if (!check) {
+                    System.out.println("No se han encontrado coincidencias.");
+                }
+                break;
+                
+                //Search by mail
+                case 6:
+                for (int i = 0; i < numContacts; i++) {
+                    if (contacts[i].getMail().toLowerCase().contains(search)) {
+                        System.out.println(i + ". " + contacts[i].showContact());
+                        System.out.println();
+                        check = true;
+                    }
+                }
+                if (!check) {
+                    System.out.println("No se han encontrado coincidencias.");
+                }
+                break;
+                
+                //Global search 
+                case 7:
+                for (int i = 0; i < numContacts; i++) {
+                    if (contacts[i].showContact().toLowerCase().contains(search)) {
+                        System.out.println(i + ". " + contacts[i].showContact());
+                        System.out.println();
+                        check = true;
+                    }
+                }
+                if (!check) {
+                    System.out.println("No se han encontrado contactos.");
+                }
+                break;
+    
+                default: System.out.println("Opción desconocida.");
+            }
         }
     }
 
@@ -143,7 +197,7 @@ public class Book {
 
     //Function to see if the book is full
     public boolean isFull() {
-        if (contacts[maxContacts - 1] != null) {
+        if (numContacts == maxContacts) {
             return true;
         } else {
             return false;
