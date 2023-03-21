@@ -27,12 +27,12 @@ public class AppContactBook {
         String inputName;
         //do-while to get a name that doesn't exist already
         do {
+            System.out.println();
             System.out.print("Introduce nombre: ");
             inputName = input.nextLine();
             if (contactBook.nameExists(inputName)) {
                 System.out.println();
                 System.out.println("Nombre ya existente.");
-                System.out.println();
             }
         } while (contactBook.nameExists(inputName)); 
         return inputName;
@@ -40,6 +40,7 @@ public class AppContactBook {
 
     //Function to get the input (contact phone)
     public String inputPhone() {
+        System.out.println();
         System.out.print("Introduce teléfono: ");
         String inputPhone = input.nextLine();
         return inputPhone;
@@ -47,6 +48,7 @@ public class AppContactBook {
 
     //Function to get the input (contact mail)
     public String inputMail() {
+        System.out.println();
         System.out.print("Introduce correo: ");
         String inputMail = input.nextLine();
         return inputMail;
@@ -54,6 +56,7 @@ public class AppContactBook {
 
     //Function to get the input (search)
     public String inputSearch() {
+        System.out.println();
         System.out.print("Buscar: ");
         String inputSearch = input.nextLine();
         return inputSearch;

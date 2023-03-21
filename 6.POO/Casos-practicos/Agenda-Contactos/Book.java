@@ -112,41 +112,21 @@ public class Book {
         switch(option) {
             //Search by name
             case 4:
-            if (isEmpty()) {
-                System.out.println();
-                System.out.println("No hay contactos.");
-                return;
-            }
             searchByName(search);
             break;
             
             //Search by phone
             case 5:
-            if (isEmpty()) {
-                System.out.println();
-                System.out.println("No hay contactos.");
-                return;
-            }
             searchByPhone(search);
             break;
             
             //Search by mail
             case 6:
-            if (isEmpty()) {
-                System.out.println();
-                System.out.println("No hay contactos.");
-                return;
-            }
             searchByMail(search);
             break;
             
             //Global search 
             case 7:
-            if (isEmpty()) {
-                System.out.println();
-                System.out.println("No hay contactos.");
-                return;
-            }
             searchBy(search);
             break;
 
