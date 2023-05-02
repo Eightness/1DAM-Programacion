@@ -87,9 +87,18 @@ public class Pedido {
         System.out.println("Nombre del cliente: " + nombre);
         System.out.println("Subtotal: " + subtotal);
         System.out.println("Porcentaje aplicado: " + porcentDescuento);
+        System.out.println("IVA: ");
         System.out.println("Precio final: " + precioFinal);
         System.out.println("Listado de artículos y cantidades:");
         verListaArticulos();
     }
+
+    //Método para añadir artículo
+
+    //Método para quitar artículo
+
+    //Método para modificar artículo
+
+    //Método para pagar
     
 }
