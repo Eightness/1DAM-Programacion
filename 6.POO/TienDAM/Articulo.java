@@ -65,10 +65,12 @@ public class Articulo {
     //Métodos
     //Método para ver/imprimir un artículo
     public void verArticulo() {
+        System.out.println();
         System.out.println("Nombre: " + nombre);
         System.out.println("Precio: " + precio);
         System.out.println("Tipo de IVA: " + tipoIVA);
         System.out.println("Cantidad: " + cantidad);
+        System.out.println();
     }
 
     //Método para añadir x cantidad a un artículo
