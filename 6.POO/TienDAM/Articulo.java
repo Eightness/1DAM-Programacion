@@ -27,7 +27,7 @@ public class Articulo {
         setCantidad(cantidad);
     }
 
-    //Getters y Setters
+    //Setters y Getters
     //Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;

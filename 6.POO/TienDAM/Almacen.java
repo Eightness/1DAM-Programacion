@@ -16,7 +16,7 @@ public class Almacen {
         setMaxArticulos(maxArticulos);
     }
 
-    //Getters y Setters
+    //Setters y Getters
     //Setters
     public void setMaxArticulos(int maxArticulos) {
         this.maxArticulos = maxArticulos;
