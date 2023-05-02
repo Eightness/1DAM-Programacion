@@ -21,7 +21,10 @@ public class Articulo {
 
     //Constructor completo
     public Articulo(String nombre, double precio, IVA tipoIva, int cantidad) {
-        
+        setNombre(nombre);
+        setPrecio(precio);
+        setTipoIVA(tipoIva);
+        setCantidad(cantidad);
     }
 
     //Getters y Setters
