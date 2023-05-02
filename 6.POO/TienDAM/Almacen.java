@@ -2,7 +2,7 @@ public class Almacen {
 
     //Atributos
     private int maxArticulos;
-    private Articulo[] articulos;
+    private Articulo[] articulos = new Articulo[maxArticulos];
     private int numArticulos = 0;
 
     //Constructores
@@ -18,10 +18,6 @@ public class Almacen {
 
     //Getters y Setters
     //Setters
-    public void setArticulos(Articulo[] articulos) {
-        this.articulos = articulos;
-    }
-
     public void setMaxArticulos(int maxArticulos) {
         this.maxArticulos = maxArticulos;
     }
@@ -37,6 +33,8 @@ public class Almacen {
 
     //Métodos
     //Método para ver/imprimir un Almacén
-    
+    public void verAlmacen() {
+        
+    }
     
 }
