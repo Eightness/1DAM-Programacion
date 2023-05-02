@@ -78,10 +78,14 @@ public class Articulo {
 
     //Método para quitar x cantidad a un artículo
     public void disminuir(int cantidad) {
-        if (cantidad <= this.cantidad) {
+        if (cantidad <= this.cantidad && cantidad > 0) {
             this.cantidad -= cantidad;
         } else {
-            System.out.println("Se quiere quitar más cantidad de la existente.");
+            if (cantidad == 0) {
+                System.out.println("No tiene sentido quitar 0 unidades.");
+            } else {
+                System.out.println("Se quiere quitar más cantidad de la existente.");
+            }
         }
     }
 }
