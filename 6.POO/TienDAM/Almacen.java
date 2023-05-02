@@ -12,8 +12,8 @@ public class Almacen {
     }
 
     //Constructor completo
-    public Almacen(int maxArticulos, Articulo[] articulos) {
-
+    public Almacen(int maxArticulos) {
+        setMaxArticulos(maxArticulos);
     }
 
     //Getters y Setters
@@ -38,6 +38,7 @@ public class Almacen {
             System.out.println();
             System.out.println("Artículo " + (i + 1) + ":");
             articulos[i].verArticulo();
+            System.out.println("-------------------------");
         }
     }
 
@@ -59,11 +60,25 @@ public class Almacen {
         }
     }
 
+    //Método para comprobar si ya existe x artículo en el almacén
+    public boolean existeArticulo(Articulo a) {
+        for (int i = 0; i < numArticulos; i++) {
+            if (articulos[i].getNombre() == a.getNombre()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Método para añadir un artículo al almacén
     public boolean añadirArticulo(Articulo a) {
         if (estaLleno()) {
             System.out.println();
             System.out.println("El almacén está lleno, no se pueden añadir más artículos.");
+            return false;
+        } else if (existeArticulo(a)) {
+            System.out.println();
+            System.out.println("Ya existe un artículo con el mismo nombre en el almacén.");
             return false;
         } else {
             articulos[numArticulos] = a;
@@ -75,7 +90,7 @@ public class Almacen {
     }
 
     //Método para quitar artículo del almacén
-    public boolean quitarArtiuclo(int pos) {
+    public boolean quitarArticulo(int pos) {
         if (estaVacio()) {
             System.out.println();
             System.out.println("No hay artículos en el almacén para quitar.");
@@ -112,6 +127,46 @@ public class Almacen {
             if (articulos[i].getNombre().contains(nombre)) {
                 articulos[i].verArticulo();
             }
+        }
+    }
+
+    //Método para recibir x cantidad de un artículo (indicamos la posición del artículo)
+    public boolean recibir(int pos, int cantidad) {
+        if (cantidad < 0) {
+            System.out.println();
+            System.out.println("No se pueden recibir cantidades negativas.");
+            return false;
+        } else if (pos < 0 || pos > maxArticulos){
+            System.out.println();
+            System.out.println("El artículo seleccionado no existe.");
+            return false;
+        } else {
+            articulos[pos].setCantidad(articulos[pos].getCantidad() + cantidad);
+            System.out.println();
+            System.out.println("Recibidos " + cantidad + " del artículo seleccionado.");
+            return true;
+        }
+    }
+
+    //Método para devolver x cantidad de un artículo (indicamos la posición del artículo)
+    public boolean devolver(int pos, int cantidad) {
+        if (cantidad < 0) {
+            System.out.println();
+            System.out.println("No se pueden devolver cantidades negativas.");
+            return false;
+        } else if (pos < 0 || pos > maxArticulos) {
+            System.out.println();
+            System.out.println("El artículo seleccionado no existe.");
+            return false;
+        } else if (cantidad > articulos[pos].getCantidad()) {
+            System.out.println();
+            System.out.println("No se pueden devolver más productos de los existentes.");
+            return false;
+        } else {
+            articulos[pos].setCantidad(articulos[pos].getCantidad() - cantidad);
+            System.out.println();
+            System.out.println("Devueltos " + cantidad + " del artículo seleccionado.");
+            return true;
         }
     }
 }
