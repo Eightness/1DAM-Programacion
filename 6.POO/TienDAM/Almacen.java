@@ -11,15 +11,25 @@ public class Almacen {
 
     }
 
-    //Constructor completo
+    //Constructor con maxArticulos
     public Almacen(int maxArticulos) {
         setMaxArticulos(maxArticulos);
+    }
+
+    //Constructor completo
+    public Almacen(int maxArticulos, Articulo[] articulos) {
+        setMaxArticulos(maxArticulos);
+        setArticulos(articulos);
     }
 
     //Setters y Getters
     //Setters
     public void setMaxArticulos(int maxArticulos) {
         this.maxArticulos = maxArticulos;
+    }
+
+    public void setArticulos(Articulo[] articulos) {
+        this.articulos = articulos;
     }
 
     //Getters
