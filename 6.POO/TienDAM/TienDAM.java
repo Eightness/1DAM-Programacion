@@ -2,11 +2,19 @@ import java.util.Scanner;
 
 public class TienDAM {
 
+    //MAIN
+    public static void main(String[] args) {
+        while(tiendam) {
+            switchMenu(menu());
+        }
+    }
+
     //Atributos
     static Scanner input = new Scanner(System.in);
     static Almacen almacen;
     static Pedido pedido;
     static boolean submenu;
+    static boolean tiendam = true;
 
     //Métodos
     //Método para crear lista de artículos
@@ -135,7 +143,7 @@ public class TienDAM {
             case 3:
             System.out.println();
             System.out.println("¡Gracias por usar TienDAM!");
-            System.exit(0);
+            tiendam = false;
             break;
 
             default:
