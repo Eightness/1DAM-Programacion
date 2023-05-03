@@ -2,43 +2,38 @@ import java.util.Scanner;
 
 public class TienDAM {
 
+    //Atributos
+    static Scanner input = new Scanner(System.in);
+    static Almacen almacen;
+    static Pedido pedido;
+    static boolean tiendam = true;
+
+    //Métodos
+
+    //-------------------------------------------------------------------------------
+
     //MAIN
+
     public static void main(String[] args) {
+        //Cargar Almacén
+        System.out.println();
+        System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
+        cargarAlmacen();
+
+        //Bienvenida
+        System.out.println();
+        System.out.println("¡Bienvenido a TienDAM!");
+
+        //Bucle principal
         while(tiendam) {
             switchMenu(menu());
         }
     }
 
-    //Atributos
-    static Scanner input = new Scanner(System.in);
-    static Almacen almacen;
-    static Pedido pedido;
-    static boolean submenu;
-    static boolean tiendam = true;
+    //-------------------------------------------------------------------------------
 
-    //Métodos
-    //Método para crear lista de artículos
-    static Articulo[] crearArticulos() {
-        //Declaramos el array articulos
-        Articulo[] articulos = new Articulo[5];
+    //INSTANCIAS
 
-        //Iteramos por el array añadiendo articulos con el método crearArticulo
-        for (int i = 0; i < articulos.length; i++) {
-            articulos[i] = crearArticulo();
-        }
-
-        //Devolvemos el array articulos
-        return articulos;
-    }
-
-    //Método para cargar almacén
-    static void cargarAlmacen() {
-        almacen = new Almacen(5, crearArticulos());
-    }
-
-    //Método para crear pedido
-
-    
     //Método para crear artículo
     static Articulo crearArticulo() {
         //Preguntamos por el nombre
@@ -76,6 +71,9 @@ public class TienDAM {
         System.out.print("Dime la cantidad inicial: ");
         int cantidad = input.nextInt();
 
+        //Vacíamos el buffer
+        input.nextLine();
+
         //Creamos el artículo con los parámetros introducidos por el usuario
         Articulo a = new Articulo(nombre, precio, tipoIVA, cantidad);
 
@@ -83,13 +81,46 @@ public class TienDAM {
         return a;
     }
 
+    //Método para crear lista de artículos
+    static Articulo[] crearArticulos() {
+        //Declaramos el array articulos
+        Articulo[] articulos = new Articulo[3];
+
+        //Iteramos por el array añadiendo articulos con el método crearArticulo
+        for (int i = 0; i < articulos.length; i++) {
+            System.out.println();
+            System.out.println("Artículo " + (i + 1) + ":");
+            System.out.println("-----------------------");
+            articulos[i] = crearArticulo();
+        }
+
+        //Devolvemos el array articulos
+        return articulos;
+    }
+
+    //Método para cargar almacén
+    static void cargarAlmacen() {
+        almacen = new Almacen(3, crearArticulos());
+
+        System.out.println();
+        System.out.println("Almacén creado con éxito.");
+    }
+
+    //Método para crear pedido
+    static void crearPedido() {
+
+    }
+
+    //-------------------------------------------------------------------------------
+
+    //MENÚS
 
     //Método para mostrar el menú principal
     static int menu() {
         System.out.println();
-        System.out.println("1 Almacen");
-        System.out.println("2 Pedido");
-        System.out.println("3 Salir");
+        System.out.println("1. Almacen");
+        System.out.println("2. Pedido");
+        System.out.println("3. Salir");
         System.out.println();
         System.out.print("Elige una opción: ");
         return input.nextInt();
@@ -98,13 +129,13 @@ public class TienDAM {
     //Método para mostrar el submenú Almacén
     static int submenuAlmacen() {
         System.out.println();
-        System.out.println("1 Ver");
-        System.out.println("2 Buscar");
-        System.out.println("3 Añadir");
-        System.out.println("4 Quitar");
-        System.out.println("5 Recibir");
-        System.out.println("6 Devolver");
-        System.out.println("7 Atrás");
+        System.out.println("1. Ver");
+        System.out.println("2. Buscar");
+        System.out.println("3. Añadir");
+        System.out.println("4. Quitar");
+        System.out.println("5. Recibir");
+        System.out.println("6. Devolver");
+        System.out.println("7. Atrás");
         System.out.println();
         System.out.print("Elige una opción: ");
         return input.nextInt();
@@ -113,16 +144,20 @@ public class TienDAM {
     //Método para mostrar el submenú Pedido
     static int submenuPedido() {
         System.out.println();
-        System.out.println("1 Crear pedido");
-        System.out.println("2 Añadir");
-        System.out.println("3 Quitar");
-        System.out.println("4 Modificar");
-        System.out.println("5 Ver ticket");
-        System.out.println("6 Atrás");
+        System.out.println("1. Crear pedido");
+        System.out.println("2. Añadir");
+        System.out.println("3. Quitar");
+        System.out.println("4. Modificar");
+        System.out.println("5. Ver pedido");
+        System.out.println("6. Atrás");
         System.out.println();
         System.out.print("Elige una opción: ");
         return input.nextInt();
     }
+
+    //-------------------------------------------------------------------------------
+
+    //SWITCHES
 
     //Método switch menú principal
     static void switchMenu(int opcion) {
@@ -131,18 +166,21 @@ public class TienDAM {
             case 1:
             System.out.println();
             System.out.println("Has accedido al almacén.");
+            switchSubmenuAlmacen(submenuAlmacen());
             break;
 
             //Caso 2 Pedido
             case 2:
             System.out.println();
             System.out.println("Preparar un pedido.");
+            switchSubmenuPedido(submenuPedido());
             break;
 
             //Caso 3 Salir
             case 3:
             System.out.println();
             System.out.println("¡Gracias por usar TienDAM!");
+            System.out.println();
             tiendam = false;
             break;
 
@@ -157,6 +195,7 @@ public class TienDAM {
         switch(opcion) {
             //Caso 1 Ver
             case 1:
+            almacen.verAlmacen();
             break;
 
             //Caso 2 Buscar
@@ -181,7 +220,6 @@ public class TienDAM {
 
             //Caso 7 Atrás
             case 7:
-            submenu = false;
             break;
 
             default:
@@ -195,6 +233,7 @@ public class TienDAM {
         switch(opcion) {
             //Caso 1 Crear pedido
             case 1:
+            crearPedido();
             break;
 
             //Caso 2 Añadir artículo
@@ -209,13 +248,13 @@ public class TienDAM {
             case 4:
             break;
 
-            //Caso 5 Ver ticket
+            //Caso 5 Ver pedido
             case 5:
+            pedido.verPedido();
             break;
 
             //Caso 6 Atrás
             case 6:
-            submenu = false;
             break;
 
             default:
