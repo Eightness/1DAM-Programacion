@@ -8,7 +8,7 @@ public class Almacen {
     //Constructores
     //Constructor vacío
     public Almacen() {
-
+ 
     }
 
     //Constructor con maxArticulos
