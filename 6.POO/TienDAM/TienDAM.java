@@ -4,13 +4,13 @@ public class TienDAM {
 
     //Atributos
     static Scanner input = new Scanner(System.in);
-    static Almacen almacen = new Almacen(50);
+    static Almacen almacen;
     static Pedido pedido;
     static boolean submenu;
 
     //Métodos
-    //Método para cargar lista de artículos
-    static Articulo[] cargarArticulos() {
+    //Método para crear lista de artículos
+    static Articulo[] crearArticulos() {
         //Declaramos el array articulos
         Articulo[] articulos = new Articulo[5];
 
@@ -24,7 +24,9 @@ public class TienDAM {
     }
 
     //Método para cargar almacén
-    
+    static void cargarAlmacen() {
+        almacen = new Almacen(5, crearArticulos());
+    }
 
     //Método para crear pedido
 
