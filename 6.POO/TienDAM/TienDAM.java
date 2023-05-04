@@ -4,7 +4,7 @@ public class TienDAM {
 
     //Atributos
     static Scanner input = new Scanner(System.in);
-    static Almacen almacen;
+    static Almacen almacen = new Almacen(3);
     static Pedido pedido;
     static boolean tiendam = true;
 
@@ -16,9 +16,9 @@ public class TienDAM {
 
     public static void main(String[] args) {
         //Cargar Almacén
-        System.out.println();
-        System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
-        cargarAlmacen();
+        // System.out.println();
+        // System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
+        // cargarAlmacen();
 
         //Bienvenida
         System.out.println();
@@ -200,14 +200,28 @@ public class TienDAM {
 
             //Caso 2 Buscar
             case 2:
+            input.nextLine();
+            System.out.println();
+            System.out.println("Buscar (nombre artículo): ");
+            String buscar = input.nextLine();
+            almacen.buscarArticulo(buscar);
             break;
 
             //Caso 3 Añadir
             case 3:
+            almacen.añadirArticulo(crearArticulo());
             break;
 
             //Caso 4 Quitar
             case 4:
+            if (almacen.verAlmacen()) {
+                almacen.verAlmacen();
+                System.out.println();
+                System.out.println("Selecciona un artículo de la lista para eliminarlo: ");
+                int quitar = input.nextInt();
+                almacen.quitarArticulo(quitar);
+                input.nextLine();
+            }
             break;
 
             //Caso 5 Recibir

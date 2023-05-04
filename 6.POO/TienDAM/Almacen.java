@@ -42,22 +42,14 @@ public class Almacen {
     }
 
     //Métodos
-    //Método para ver/imprimir un Almacén
-    public void verAlmacen() {
-        for (int i = 0; i < numArticulos; i++) {
-            System.out.println();
-            System.out.println("Artículo " + (i + 1) + ":");
-            articulos[i].verArticulo();
-            System.out.println("-------------------------");
-        }
-    }
-
     //Método para comprobar si el array está vacío
     public boolean estaVacio() {
-        if (articulos[0] == null) {
-            return true;
-        } else {
+        if (articulos == null) {
             return false;
+        } else if (articulos[0] == null) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -78,6 +70,23 @@ public class Almacen {
             }
         }
         return false;
+    }
+
+    //Método para ver/imprimir un Almacén
+    public boolean verAlmacen() {
+        if (estaVacio()) {
+            System.out.println();
+            System.out.println("El almacén está vacío.");
+            return false;
+        } else {
+            for (int i = 0; i < numArticulos; i++) {
+                System.out.println();
+                System.out.println("Artículo " + (i + 1) + ":");
+                articulos[i].verArticulo();
+                System.out.println("-------------------------");
+            }
+            return true;
+        }
     }
 
     //Método para añadir un artículo al almacén
@@ -105,6 +114,10 @@ public class Almacen {
             System.out.println();
             System.out.println("No hay artículos en el almacén para quitar.");
             return false;
+        } else if (pos < 0 || pos > numArticulos) {
+            System.out.println();
+            System.out.println("Artículo seleccionado inválido.");
+            return false;
         } else {
             articulos[pos] = null;
             for (int i = pos; i < numArticulos; i++) {
@@ -131,11 +144,16 @@ public class Almacen {
 
     //Método para buscar un artículo por nombre
     public void buscarArticulo(String nombre) {
-        System.out.println();
-        System.out.println("Resultado de la búsqueda:");
-        for (int i = 0; i < numArticulos; i++) {
-            if (articulos[i].getNombre().contains(nombre)) {
-                articulos[i].verArticulo();
+        if (estaVacio()) {
+            System.out.println();
+            System.out.println("El almacén está vacío.");
+        } else { 
+            System.out.println();
+            System.out.println("Resultado de la búsqueda:");
+            for (int i = 0; i < numArticulos; i++) {
+                if (articulos[i].getNombre().contains(nombre)) {
+                    articulos[i].verArticulo();
+                }
             }
         }
     }
