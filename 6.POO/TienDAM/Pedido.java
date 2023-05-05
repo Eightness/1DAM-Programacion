@@ -16,6 +16,14 @@ public class Pedido {
         
     }
 
+    //Constructor
+    public Pedido(String nombre, int maxCarrito) {
+        setNombre(nombre);
+        setMaxCarrito(maxCarrito);
+        setCarrito(new Articulo[maxCarrito]);
+        setCantidadArticulos(new int[maxCarrito]);
+    }
+
     //Constructor completo
     public Pedido(String nombre, double subtotal, double porcentDescuento, double precioFinal, int maxCarrito) {
 
@@ -45,6 +53,10 @@ public class Pedido {
 
     public void setCantidadArticulos(int[] cantidadArticulos) {
         this.cantidadArticulos = cantidadArticulos;
+    }
+
+    public void setCarrito(Articulo[] carrito) {
+        this.carrito = carrito;
     }
 
     //Getters
@@ -94,11 +106,41 @@ public class Pedido {
     }
 
     //Método para añadir artículo
+    public void añadirArticulo (Articulo articulo, int cantidad) {
+        //Añadimos el artículo a la lista de artículos de pedido
+        carrito[numArticulos] = articulo;
+        //Añadimos la cantidad del artículo a la lista de cantidades de pedido
+        cantidadArticulos[numArticulos] = cantidad;
+        //Sumamos un artículo al contador
+        numArticulos++;
+        //Mostramos mensaje de "añadido correctamente"
+        System.out.println();
+        System.out.println("Artículo y cantidad añadidos al pedido con éxito.");
+    }
 
     //Método para quitar artículo
+    public void quitarArticulo (int pos) {
+        carrito[pos] = null;
+        cantidadArticulos[pos] = 0;
+        //Desplazamos posiciones en los arrays
+        for (int i = pos; i < numArticulos; i++) {
+            carrito[i] = carrito[i + 1];
+            cantidadArticulos[i] = cantidadArticulos[i + 1];
+        }
+        numArticulos--;
+        //Mostramos mensaje de "eliminado correctamente"
+        System.out.println();
+        System.out.println("Artículo y cantidad quitados del pedido con éxito.");
+    }
 
     //Método para modificar artículo
+    public void modificarArticulo (int pos, Articulo articulo) {
+        //
+    }
 
     //Método para pagar
+    public Pedido pagarPedido () {
+        return null;
+    }
     
 }

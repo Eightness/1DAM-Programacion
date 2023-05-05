@@ -14,6 +14,7 @@ public class Almacen {
     //Constructor con maxArticulos
     public Almacen(int maxArticulos) {
         setMaxArticulos(maxArticulos);
+        setArticulos(new Articulo[maxArticulos]);
     }
 
     //Constructor completo
@@ -44,12 +45,10 @@ public class Almacen {
     //Métodos
     //Método para comprobar si el array está vacío
     public boolean estaVacio() {
-        if (articulos == null) {
-            return false;
-        } else if (articulos[0] == null) {
-            return false;
-        } else {
+        if (articulos[0] == null) {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -124,6 +123,8 @@ public class Almacen {
                 articulos[i] = articulos[i + 1];
             }
             numArticulos--;
+            System.out.println();
+            System.out.println("Artículo quitado con éxito del almacén.");
             return true;
         }
     }
@@ -143,18 +144,26 @@ public class Almacen {
     }
 
     //Método para buscar un artículo por nombre
-    public void buscarArticulo(String nombre) {
+    public boolean buscarArticulo(String nombre) {
         if (estaVacio()) {
             System.out.println();
             System.out.println("El almacén está vacío.");
+            return false;
         } else { 
+            boolean check = false;
             System.out.println();
             System.out.println("Resultado de la búsqueda:");
             for (int i = 0; i < numArticulos; i++) {
                 if (articulos[i].getNombre().contains(nombre)) {
                     articulos[i].verArticulo();
+                    check = true;
                 }
             }
+            if (!check) {
+                System.out.println();
+                System.out.println("No se encontró ningún artículo con ese nombre.");
+            }
+            return true;
         }
     }
 
