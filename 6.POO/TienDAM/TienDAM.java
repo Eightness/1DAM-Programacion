@@ -58,7 +58,7 @@ public class TienDAM {
             case 2:
             tipoIVA = Articulo.IVA.REDUCIDO;
             break;
-            
+
             case 3:
             tipoIVA = Articulo.IVA.SUPERREDUCIDO;
             break;
@@ -71,13 +71,10 @@ public class TienDAM {
         System.out.println();
         System.out.print("Dime la cantidad inicial: ");
         int cantidad = input.nextInt();
-
         //Vacíamos el buffer
         input.nextLine();
-
         //Creamos el artículo con los parámetros introducidos por el usuario
         Articulo a = new Articulo(nombre, precio, tipoIVA, cantidad);
-
         //Devolvemos el artículo
         return a;
     }
@@ -86,7 +83,6 @@ public class TienDAM {
     static Articulo[] crearArticulos() {
         //Declaramos el array articulos
         Articulo[] articulos = new Articulo[3];
-
         //Iteramos por el array añadiendo articulos con el método crearArticulo
         for (int i = 0; i < articulos.length; i++) {
             System.out.println();
@@ -94,7 +90,6 @@ public class TienDAM {
             System.out.println("-----------------------");
             articulos[i] = crearArticulo();
         }
-
         //Devolvemos el array articulos
         return articulos;
     }
@@ -102,7 +97,6 @@ public class TienDAM {
     //Método para cargar almacén
     static void cargarAlmacen() {
         almacen = new Almacen(3, crearArticulos());
-
         System.out.println();
         System.out.println("Almacén creado con éxito.");
     }
@@ -115,15 +109,18 @@ public class TienDAM {
         System.out.println();
         System.out.print("Introduce el nombre del cliente: ");
         String nombre = input.nextLine();
-
         //Preguntamos por el máximo número de artículos
         System.out.println();
         System.out.print("Introduce el número de artículos a comprar: ");
         int maxCarrito = input.nextInt();
-
+        //Preguntamos por el porcentaje del descuento que se le quiere aplicar al pedido
+        System.out.println();
+        System.out.print("Introduce el porcentaje de descuento a aplicar (0 si no se quiere aplicar ningún descuento): ");
+        double porcentDescuento = input.nextDouble();
+        //Vaciamos el buffer
+        input.nextLine();
         //Instanciamos objeto pedido con los datos del usuario
-        Pedido pedido = new Pedido(nombre, maxCarrito);
-
+        Pedido pedido = new Pedido(nombre, maxCarrito, porcentDescuento);
         //Devolvemos el pedido instanciado
         return pedido;
     }
@@ -391,16 +388,6 @@ public class TienDAM {
 
             //Caso 4 Modificar
             case 4:
-            //Mostramos almacén
-            almacen.verAlmacen();
-            //Seleccionamos artículo que deseamos modificar del pedido
-            System.out.println();
-            System.out.print("Selecciona un artículo del almacén: ");
-            int modificar = input.nextInt();
-            //Modfiicamos el artículo (instanciamos uno nuevo)
-            Articulo articuloModificado = crearArticulo();
-            //Modificamos el artículo seleccionado
-            pedido.modificarArticulo(modificar, articuloModificado);
             break;
 
             //Caso 5 Ver pedido
@@ -408,9 +395,9 @@ public class TienDAM {
             pedido.verPedido();
             break;
 
-            //Caso 6 Pagar
+            //Caso 6 Realizar pedido
             case 6:
-            pedido.pagarPedido();
+            pedido.realizarPedido();
             break;
 
             //Caso 7 Atrás

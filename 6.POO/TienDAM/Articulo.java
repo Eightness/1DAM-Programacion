@@ -14,6 +14,7 @@ public class Articulo {
     private int cantidad;
 
     //Constructores
+
     //Constructor vacío
     public Articulo() {
 
@@ -28,6 +29,7 @@ public class Articulo {
     }
 
     //Setters y Getters
+
     //Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -63,6 +65,7 @@ public class Articulo {
     }
 
     //Métodos
+
     //Método para ver/imprimir un artículo
     public void verArticulo() {
         System.out.println();
@@ -80,13 +83,13 @@ public class Articulo {
 
     //Método para quitar x cantidad a un artículo
     public void disminuir(int cantidad) {
-        if (cantidad <= this.cantidad && cantidad > 0) {
+        if (cantidad > 0 && cantidad <= this.cantidad) {
             this.cantidad -= cantidad;
         } else {
             if (cantidad == 0) {
                 System.out.println("No tiene sentido quitar 0 unidades.");
             } else {
-                System.out.println("Se quiere quitar más cantidad de la existente.");
+                System.out.println("No hay tantas existencias.");
             }
         }
     }

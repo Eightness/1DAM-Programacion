@@ -1,11 +1,12 @@
 public class Almacen {
 
-    //Atributos
+    //Atributos de la clase
     private int maxArticulos;
     private Articulo[] articulos = new Articulo[maxArticulos];
     private int numArticulos = 0;
 
     //Constructores
+
     //Constructor vacío
     public Almacen() {
  
@@ -24,6 +25,7 @@ public class Almacen {
     }
 
     //Setters y Getters
+
     //Setters
     public void setMaxArticulos(int maxArticulos) {
         this.maxArticulos = maxArticulos;
@@ -43,6 +45,7 @@ public class Almacen {
     }
 
     //Métodos
+
     //Método para comprobar si el array está vacío
     public boolean estaVacio() {
         if (articulos[0] == null) {

@@ -1,6 +1,6 @@
 public class Pedido {
 
-    //Atributos
+    //Atributos de la clase
     private String nombre;
     private double subtotal;
     private double porcentDescuento;
@@ -11,15 +11,17 @@ public class Pedido {
     private int numArticulos = 0;
 
     //Constructores
+
     //Constructor vacío
     public Pedido() {
         
     }
 
     //Constructor
-    public Pedido(String nombre, int maxCarrito) {
+    public Pedido(String nombre, int maxCarrito, double porcentDescuento) {
         setNombre(nombre);
         setMaxCarrito(maxCarrito);
+        setPorcentDescuento(porcentDescuento);
         setCarrito(new Articulo[maxCarrito]);
         setCantidadArticulos(new int[maxCarrito]);
     }
@@ -30,6 +32,7 @@ public class Pedido {
     }
 
     //Setters y Getters
+
     //Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -81,6 +84,7 @@ public class Pedido {
     }
 
     //Métodos
+
     //Método para ver la lista de artículos añadidos al pedido
     public void verListaArticulos() {
         for (int i = 0; i < numArticulos; i++) {
@@ -107,13 +111,9 @@ public class Pedido {
 
     //Método para añadir artículo
     public void añadirArticulo (Articulo articulo, int cantidad) {
-        //Añadimos el artículo a la lista de artículos de pedido
         carrito[numArticulos] = articulo;
-        //Añadimos la cantidad del artículo a la lista de cantidades de pedido
         cantidadArticulos[numArticulos] = cantidad;
-        //Sumamos un artículo al contador
         numArticulos++;
-        //Mostramos mensaje de "añadido correctamente"
         System.out.println();
         System.out.println("Artículo y cantidad añadidos al pedido con éxito.");
     }
@@ -122,24 +122,62 @@ public class Pedido {
     public void quitarArticulo (int pos) {
         carrito[pos] = null;
         cantidadArticulos[pos] = 0;
-        //Desplazamos posiciones en los arrays
         for (int i = pos; i < numArticulos; i++) {
             carrito[i] = carrito[i + 1];
             cantidadArticulos[i] = cantidadArticulos[i + 1];
         }
         numArticulos--;
-        //Mostramos mensaje de "eliminado correctamente"
         System.out.println();
         System.out.println("Artículo y cantidad quitados del pedido con éxito.");
     }
 
-    //Método para modificar artículo
-    public void modificarArticulo (int pos, Articulo articulo) {
-        //
+    //Método para modificar artículo (Artículo entero)
+    public void modificarArticuloEntero (int pos, Articulo articulo, int cantidad) {
+        carrito[pos] = articulo;
+        cantidadArticulos[pos] = cantidad;
+    }
+
+    //Método para modificar artículo (sólo cantidad)
+    public void modificarArticuloCantidad (int pos, int cantidad) {
+        cantidadArticulos[pos] = cantidad;
+    }
+
+    //Método para calcular el subtotal
+    public double calcularSubtotal () {
+        double subtotal = 0;
+        for (int i = 0; i < numArticulos; i++) {
+            subtotal += carrito[i].getPrecio();
+        }
+        return subtotal;
+    }
+
+    //Método para calcular el precio final
+    public double calcularPrecioFinal () {
+        double precioFinal = 0;
+        for (int i = 0; i < numArticulos; i++) {
+            switch (carrito[i].getTipoIVA()) {
+                case NORMAL:
+                    precioFinal += carrito[i].getPrecio() * 1.21;
+                break;
+
+                case REDUCIDO:
+                    precioFinal += carrito[i].getPrecio() * 1.1;
+                break;
+
+                case SUPERREDUCIDO:
+                    precioFinal += carrito[i].getPrecio() * 1.04;
+                break;
+            }
+        }
+        double descuento = precioFinal * (porcentDescuento / 100);
+        precioFinal -= descuento;
+        return precioFinal;
     }
 
     //Método para pagar
-    public Pedido pagarPedido () {
+    public Pedido realizarPedido () {
+        System.out.println();
+        System.out.println("Pedido realizado con éxito.");
         return null;
     }
     
