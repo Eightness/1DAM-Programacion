@@ -80,15 +80,14 @@ public class Almacen {
             System.out.println();
             System.out.println("El almacén está vacío.");
             return false;
-        } else {
-            for (int i = 0; i < numArticulos; i++) {
-                System.out.println();
-                System.out.println("Artículo " + (i + 1) + ":");
-                articulos[i].verArticulo();
-                System.out.println("-------------------------");
-            }
-            return true;
         }
+        for (int i = 0; i < numArticulos; i++) {
+            System.out.println();
+            System.out.println("Artículo " + (i + 1) + ":");
+            articulos[i].verArticulo();
+            System.out.println("-------------------------");
+        }
+        return true;
     }
 
     //Método para añadir un artículo al almacén

@@ -17,9 +17,9 @@ public class TienDAM {
 
     public static void main(String[] args) {
         //Cargar Almacén
-        // System.out.println();
-        // System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
-        // cargarAlmacen();
+        System.out.println();
+        System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
+        almacen = cargarAlmacen();
 
         //Bienvenida
         System.out.println();
@@ -95,10 +95,14 @@ public class TienDAM {
     }
 
     //Método para cargar almacén
-    static void cargarAlmacen() {
-        almacen = new Almacen(3, crearArticulos());
+    static Almacen cargarAlmacen() {
+        almacen = new Almacen(3);
+        almacen.añadirArticulo(crearArticulo());
+        almacen.añadirArticulo(crearArticulo());
+        almacen.añadirArticulo(crearArticulo());
         System.out.println();
         System.out.println("Almacén creado con éxito.");
+        return almacen;
     }
 
     //Método para crear pedido
@@ -160,11 +164,11 @@ public class TienDAM {
     static int submenuPedido() {
         System.out.println();
         System.out.println("1. Crear pedido");
-        System.out.println("2. Añadir");
-        System.out.println("3. Quitar");
-        System.out.println("4. Modificar");
+        System.out.println("2. Añadir artículo");
+        System.out.println("3. Quitar artículo");
+        System.out.println("4. Modificar pedido");
         System.out.println("5. Ver pedido");
-        System.out.println("6. Pagar");
+        System.out.println("6. Realizar pedido");
         System.out.println("7. Atrás");
         System.out.println();
         System.out.print("Elige una opción: ");
@@ -334,6 +338,15 @@ public class TienDAM {
     //Método switch para submenú Pedido
     static void switchSubmenuPedido(int opcion) {
         switch(opcion) {
+
+            //System.out.println("1. Crear pedido");
+            //System.out.println("2. Añadir artículo");
+            //System.out.println("3. Quitar artículo");
+            //System.out.println("4. Modificar pedido");
+            //System.out.println("5. Ver pedido");
+            //System.out.println("6. Realizar pedido");
+            //System.out.println("7. Atrás");
+
             //Caso 1 Crear pedido
             case 1:
             //En caso de que ya haya un pedido en marcha
@@ -348,7 +361,7 @@ public class TienDAM {
                     //En caso de no querer sobreescribir
                     case 2:
                     break;
-
+                    //En caso de introducir una opción inválida (diferente a 1 o 2)
                     default:
                     System.out.println("Opción inválida.");
                     break;
@@ -363,15 +376,17 @@ public class TienDAM {
             //Mostramos almacén
             almacen.verAlmacen();
             //Seleccionamos artículo que deseamos añadir al pedido
-            System.out.println();
-            System.out.print("Selecciona un artículo del almacén");
-            Articulo articulo = almacen.getArticulos()[input.nextInt() - 1];
-            //Seleccionamos cantidad que deseamos del artículo seleccionado
-            System.out.println();
-            System.out.print("Introduce cantidad del artículo: ");
-            int cantidad = input.nextInt();
-            //Añadimos el artículo y la cantidad al pedido
-            pedido.añadirArticulo(articulo, cantidad);
+            if (almacen.verAlmacen()) {
+                System.out.println();
+                System.out.print("Selecciona un artículo del almacén: ");
+                Articulo articulo = almacen.getArticulos()[input.nextInt() - 1];
+                //Seleccionamos cantidad que deseamos del artículo seleccionado
+                System.out.println();
+                System.out.print("Introduce cantidad del artículo: ");
+                int cantidad = input.nextInt();
+                //Añadimos el artículo y la cantidad al pedido
+                pedido.añadirArticulo(articulo, cantidad);
+            }
             break;
 
             //Caso 3 Quitar artículo
