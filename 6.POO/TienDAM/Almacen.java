@@ -75,28 +75,18 @@ public class Almacen {
     }
 
     //Método para ver/imprimir un Almacén
-    public boolean verAlmacen() {
-        if (estaVacio()) {
-            System.out.println();
-            System.out.println("El almacén está vacío.");
-            return false;
-        }
+    public void verAlmacen() {
         for (int i = 0; i < numArticulos; i++) {
             System.out.println();
             System.out.println("Artículo " + (i + 1) + ":");
             articulos[i].verArticulo();
             System.out.println("-------------------------");
         }
-        return true;
     }
 
     //Método para añadir un artículo al almacén
     public boolean añadirArticulo(Articulo a) {
-        if (estaLleno()) {
-            System.out.println();
-            System.out.println("El almacén está lleno, no se pueden añadir más artículos.");
-            return false;
-        } else if (existeArticulo(a)) {
+        if (existeArticulo(a)) {
             System.out.println();
             System.out.println("Ya existe un artículo con el mismo nombre en el almacén.");
             return false;
@@ -111,11 +101,7 @@ public class Almacen {
 
     //Método para quitar artículo del almacén
     public boolean quitarArticulo(int pos) {
-        if (estaVacio()) {
-            System.out.println();
-            System.out.println("No hay artículos en el almacén para quitar.");
-            return false;
-        } else if (pos < 0 || pos > numArticulos) {
+        if (pos < 0 || pos > numArticulos) {
             System.out.println();
             System.out.println("Artículo seleccionado inválido.");
             return false;
@@ -147,26 +133,20 @@ public class Almacen {
 
     //Método para buscar un artículo por nombre
     public boolean buscarArticulo(String nombre) {
-        if (estaVacio()) {
-            System.out.println();
-            System.out.println("El almacén está vacío.");
-            return false;
-        } else { 
-            boolean check = false;
-            System.out.println();
-            System.out.println("Resultado de la búsqueda:");
-            for (int i = 0; i < numArticulos; i++) {
-                if (articulos[i].getNombre().contains(nombre)) {
-                    articulos[i].verArticulo();
-                    check = true;
-                }
+        boolean check = false;
+        System.out.println();
+        System.out.println("Resultado de la búsqueda:");
+        for (int i = 0; i < numArticulos; i++) {
+            if (articulos[i].getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+                articulos[i].verArticulo();
+                check = true;
             }
-            if (!check) {
-                System.out.println();
-                System.out.println("No se encontró ningún artículo con ese nombre.");
-            }
-            return true;
         }
+        if (!check) {
+            System.out.println();
+            System.out.println("No se encontró ningún artículo con ese nombre.");
+        }
+        return check;
     }
 
     //Método para recibir x cantidad de un artículo (indicamos la posición del artículo)
@@ -175,14 +155,14 @@ public class Almacen {
             System.out.println();
             System.out.println("No se pueden recibir cantidades negativas.");
             return false;
-        } else if (pos < 0 || pos > maxArticulos){
+        } else if (pos < 0 || pos > numArticulos){
             System.out.println();
             System.out.println("El artículo seleccionado no existe.");
             return false;
         } else {
             articulos[pos].setCantidad(articulos[pos].getCantidad() + cantidad);
             System.out.println();
-            System.out.println("Recibidos " + cantidad + " del artículo seleccionado.");
+            System.out.println("Recibidas " + cantidad + " unidades de " + articulos[pos].getNombre());
             return true;
         }
     }
@@ -193,7 +173,7 @@ public class Almacen {
             System.out.println();
             System.out.println("No se pueden devolver cantidades negativas.");
             return false;
-        } else if (pos < 0 || pos > maxArticulos) {
+        } else if (pos < 0 || pos > numArticulos) {
             System.out.println();
             System.out.println("El artículo seleccionado no existe.");
             return false;
@@ -204,7 +184,7 @@ public class Almacen {
         } else {
             articulos[pos].setCantidad(articulos[pos].getCantidad() - cantidad);
             System.out.println();
-            System.out.println("Devueltos " + cantidad + " del artículo seleccionado.");
+            System.out.println("Devueltas " + cantidad + " unidades de " + articulos[pos].getNombre());
             return true;
         }
     }

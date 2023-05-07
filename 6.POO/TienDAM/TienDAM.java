@@ -17,9 +17,9 @@ public class TienDAM {
 
     public static void main(String[] args) {
         //Cargar Almacén
-        System.out.println();
-        System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
-        almacen = cargarAlmacen();
+        //System.out.println();
+        //System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
+        //almacen = crearAlmacen();
 
         //Bienvenida
         System.out.println();
@@ -51,20 +51,21 @@ public class TienDAM {
         int opcion = input.nextInt();
         Articulo.IVA tipoIVA = Articulo.IVA.NORMAL;
         switch(opcion) {
+            //Caso IVA Normal
             case 1:
-            tipoIVA = Articulo.IVA.NORMAL;
+                tipoIVA = Articulo.IVA.NORMAL;
             break;
-
+            //Caso IVA Reducido
             case 2:
-            tipoIVA = Articulo.IVA.REDUCIDO;
+                tipoIVA = Articulo.IVA.REDUCIDO;
             break;
-
+            //Caso IVA Superreducido
             case 3:
-            tipoIVA = Articulo.IVA.SUPERREDUCIDO;
+                tipoIVA = Articulo.IVA.SUPERREDUCIDO;
             break;
-
+            //Caso input inválido, se define el IVA Normal por defecto.
             default:
-            System.out.println("Opción inválida, se queda el IVA normal.");
+                System.out.println("Opción inválida, se queda el IVA normal.");
             break;
         }
         //Preguntamos por la cantidad
@@ -79,27 +80,20 @@ public class TienDAM {
         return a;
     }
 
-    //Método para crear lista de artículos
-    static Articulo[] crearArticulos() {
-        //Declaramos el array articulos
-        Articulo[] articulos = new Articulo[3];
-        //Iteramos por el array añadiendo articulos con el método crearArticulo
-        for (int i = 0; i < articulos.length; i++) {
-            System.out.println();
-            System.out.println("Artículo " + (i + 1) + ":");
-            System.out.println("-----------------------");
-            articulos[i] = crearArticulo();
-        }
-        //Devolvemos el array articulos
-        return articulos;
-    }
-
     //Método para cargar almacén
-    static Almacen cargarAlmacen() {
-        almacen = new Almacen(3);
-        almacen.añadirArticulo(crearArticulo());
-        almacen.añadirArticulo(crearArticulo());
-        almacen.añadirArticulo(crearArticulo());
+    static Almacen crearAlmacen() {
+        //Preguntamos por la cantidad de almacenaje máxima
+        System.out.println();
+        System.out.print("¿Cuánas existencias puede contener tu almacén? ");
+        int existencias = input.nextInt();
+        //Vaciamos el buffer
+        input.nextLine();
+        //Creamos el almacén
+        almacen = new Almacen(existencias);
+        for (int i = 0; i < existencias; i++) {
+            almacen.añadirArticulo(crearArticulo());
+        }
+        //Mensaje para confirmar que el almacén ha sido creado con éxito
         System.out.println();
         System.out.println("Almacén creado con éxito.");
         return almacen;
@@ -141,7 +135,9 @@ public class TienDAM {
         System.out.println("3. Salir");
         System.out.println();
         System.out.print("Elige una opción: ");
-        return input.nextInt();
+        int opcion = input.nextInt();
+        input.nextLine();
+        return opcion;
     }
 
     //Método para mostrar el submenú Almacén
@@ -157,7 +153,9 @@ public class TienDAM {
         System.out.println("8. Atrás");
         System.out.println();
         System.out.print("Elige una opción: ");
-        return input.nextInt();
+        int opcion = input.nextInt();
+        input.nextLine();
+        return opcion;
     }
 
     //Método para mostrar el submenú Pedido
@@ -172,7 +170,9 @@ public class TienDAM {
         System.out.println("7. Atrás");
         System.out.println();
         System.out.print("Elige una opción: ");
-        return input.nextInt();
+        int opcion = input.nextInt();
+        input.nextLine();
+        return opcion;
     }
 
     //-------------------------------------------------------------------------------
@@ -184,34 +184,32 @@ public class TienDAM {
         switch(opcion) {
             //Caso 1 Almacen
             case 1:
-            System.out.println();
-            System.out.println("Has accedido al almacén.");
-            submenu = true;
-            while(submenu) {
-                switchSubmenuAlmacen(submenuAlmacen());
-            }
+                System.out.println();
+                System.out.println("Has accedido al almacén.");
+                submenu = true;
+                while(submenu) {
+                    switchSubmenuAlmacen(submenuAlmacen());
+                }
             break;
-
             //Caso 2 Pedido
             case 2:
-            System.out.println();
-            System.out.println("Preparar un pedido.");
-            submenu = true;
-            while(submenu) {
-                switchSubmenuPedido(submenuPedido());
-            }
+                System.out.println();
+                System.out.println("Preparar un pedido.");
+                submenu = true;
+                while(submenu) {
+                    switchSubmenuPedido(submenuPedido());
+                }
             break;
-
             //Caso 3 Salir
             case 3:
-            System.out.println();
-            System.out.println("¡Gracias por usar TienDAM!");
-            System.out.println();
-            tiendam = false;
+                System.out.println();
+                System.out.println("¡Gracias por usar TienDAM!");
+                System.out.println();
+                tiendam = false;
             break;
-
+            //Caso de introducir una opción inválida
             default:
-            System.out.println("Opción inválida.");
+                System.out.println("Opción inválida.");
             break;
         }
     }    
@@ -221,116 +219,100 @@ public class TienDAM {
         switch(opcion) {
             //Caso 1 Ver
             case 1:
-            //Mostramos almacén
-            almacen.verAlmacen();
+                if (almacen.estaVacio()) {
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                } else {
+                    almacen.verAlmacen();
+                }
             break;
-
             //Caso 2 Buscar
             case 2:
-            if (almacen.estaVacio()) {
-                System.out.println();
-                System.out.println("El almacén está vacío.");
-            } else {
-                //Vaciamos buffer
-                input.nextLine();
-                //Preguntamos por el nombre del artículo a buscar
-                System.out.println();
-                System.out.print("Buscar (nombre artículo): ");
-                String buscar = input.nextLine();
-                //Buscamos
-                almacen.buscarArticulo(buscar);
-            }
+                if (almacen.estaVacio()) {
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                } else {
+                    System.out.println();
+                    System.out.print("Buscar (nombre artículo): ");
+                    almacen.buscarArticulo(input.nextLine());
+                }
             break;
-
             //Caso 3 Añadir
             case 3:
-            //Vaciamos buffer
-            input.nextLine();
-            almacen.añadirArticulo(crearArticulo());
+                if (almacen.estaLleno()) {
+                    System.out.println();
+                    System.out.println("El almacén está lleno, no se pueden añadir más artículos.");
+                } else {
+                    almacen.añadirArticulo(crearArticulo());
+                }
             break;
-
             //Caso 4 Quitar
             case 4:
-            //Mostramos almacén
-            almacen.verAlmacen();
-            if (!almacen.estaVacio()) {
-                //Preguntamos por el artículo del almacén
-                System.out.println();
-                System.out.print("Selecciona un artículo de la lista para eliminarlo: ");
-                int quitar = input.nextInt() - 1;
-                almacen.quitarArticulo(quitar);
-            }
+                if (almacen.estaVacio()) {
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                } else {
+                    System.out.println();
+                    System.out.print("Selecciona un artículo de la lista para eliminarlo: ");
+                    int quitar = input.nextInt() - 1;
+                    almacen.quitarArticulo(quitar);
+                }
             break;
-
             //Caso 5 Modificar precio
             case 5:
-            //Mostramos almacén
-            if (almacen.estaVacio()) {
-                System.out.println();
-                System.out.println("El almacén está vacío.");
-            } else {
-                almacen.verAlmacen();
-                //Preguntamos por el artículo del almacén
-                System.out.println();
-                System.out.print("Selecciona un artículo de la lista a modificar precio: ");
-                int modificar = input.nextInt() - 1;
-                //Preguntamos por el nuevo precio
-                System.out.println();
-                System.out.print("Introduce el nuevo precio: ");
-                double precio = input.nextDouble();
-                //Modificamos el precio del artículo seleccionado
-                almacen.modificarPrecio(modificar, precio);
-            }
+                if (almacen.estaVacio()) {
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                } else {
+                    almacen.verAlmacen();
+                    System.out.println();
+                    System.out.print("Selecciona un artículo de la lista a modificar precio: ");
+                    int modificar = input.nextInt() - 1;
+                    System.out.println();
+                    System.out.print("Introduce el nuevo precio: ");
+                    double precio = input.nextDouble();
+                    almacen.modificarPrecio(modificar, precio);
+                }
             break;
-
             //Caso 6 Recibir
             case 6:
-            //Mostramos almacén
-            if (almacen.estaVacio()) {
-                System.out.println();
-                System.out.println("El almacén está vacío.");
-            } else {
-                almacen.verAlmacen();
-                //Preguntamos por el artículo del almacén
-                System.out.println();
-                System.out.print("Selecciona un artículo de la lista a recibir: ");
-                int recibir = input.nextInt() - 1;
-                //Preguntamos por la cantidad a recibir
-                System.out.println();
-                System.out.print("Introduce cantidad a recibir: ");
-                int cantidad = input.nextInt();
-                //Recibimos x cantidad del artículo seleccionado
-                almacen.recibir(recibir, cantidad);
-            }
+                if (almacen.estaVacio()) {
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                } else {
+                    almacen.verAlmacen();
+                    System.out.println();
+                    System.out.print("Selecciona un artículo de la lista a recibir: ");
+                    int recibir = input.nextInt() - 1;
+                    System.out.println();
+                    System.out.print("Introduce cantidad a recibir: ");
+                    int cantidad = input.nextInt();
+                    almacen.recibir(recibir, cantidad);
+                }
             break;
-
             //Caso 7 Devolver
             case 7:
-            if (almacen.estaVacio()) {
-                System.out.println();
-                System.out.println("El almacén está vacío.");
-            } else {
-                almacen.verAlmacen();
-                //Preguntamos por el artículo del almacén
-                System.out.println();
-                System.out.print("Selecciona un artículo de la lista a devolver: ");
-                int devolver = input.nextInt() - 1;
-                //Preguntamos por la cantidad a devolver
-                System.out.println();
-                System.out.print("Introduce cantidad a devolver: ");
-                int cantidad = input.nextInt();
-                //Devolvemos x cantidad del artículo seleccionado
-                almacen.devolver(devolver, cantidad);
-            }
+                if (almacen.estaVacio()) {
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                } else {
+                    almacen.verAlmacen();
+                    System.out.println();
+                    System.out.print("Selecciona un artículo de la lista a devolver: ");
+                    int devolver = input.nextInt() - 1;
+                    System.out.println();
+                    System.out.print("Introduce cantidad a devolver: ");
+                    int cantidad = input.nextInt();
+                    almacen.devolver(devolver, cantidad);
+                }
             break;
-
             //Caso 8 Atrás
             case 8:
-            submenu = false;
+                submenu = false;
             break;
-
+            //Caso opción introducida por el usuario inválida
             default:
-            System.out.println("Opción inválida.");
+                System.out.println("Opción inválida.");
             break;
         }
     }
@@ -338,92 +320,62 @@ public class TienDAM {
     //Método switch para submenú Pedido
     static void switchSubmenuPedido(int opcion) {
         switch(opcion) {
-
-            //System.out.println("1. Crear pedido");
-            //System.out.println("2. Añadir artículo");
-            //System.out.println("3. Quitar artículo");
-            //System.out.println("4. Modificar pedido");
-            //System.out.println("5. Ver pedido");
-            //System.out.println("6. Realizar pedido");
-            //System.out.println("7. Atrás");
-
             //Caso 1 Crear pedido
             case 1:
-            //En caso de que ya haya un pedido en marcha
-            if (pedido != null) {
-                System.out.println();
-                System.out.println("Hay un pedido en curso, ¿Quieres sobreescribirlo? (1 Sí, 2 No)");
-                switch(input.nextInt()) {
-                    //En caso de querer sobreescribir
-                    case 1:
+                if (pedido != null) {
+                    System.out.println();
+                    System.out.println("Hay un pedido en curso, ¿Quieres sobreescribirlo? (1 Sí, 2 No)");
+                    switch(input.nextInt()) {
+                        //En caso de querer sobreescribir
+                        case 1:
+                            pedido = crearPedido();
+                        break;
+                        //En caso de no querer sobreescribir
+                        case 2:
+                        break;
+                        //En caso de introducir una opción inválida (diferente a 1 o 2)
+                        default:
+                            System.out.println("Opción inválida.");
+                        break;
+                    }
+                } else {    //En caso de que sea un nuevo pedido
                     pedido = crearPedido();
-                    break;
-                    //En caso de no querer sobreescribir
-                    case 2:
-                    break;
-                    //En caso de introducir una opción inválida (diferente a 1 o 2)
-                    default:
-                    System.out.println("Opción inválida.");
-                    break;
                 }
-            } else {    //En caso de que sea un nuevo pedido
-                pedido = crearPedido();
-            }
             break;
-
             //Caso 2 Añadir artículo
-            case 2: 
-            //Mostramos almacén
-            almacen.verAlmacen();
-            //Seleccionamos artículo que deseamos añadir al pedido
-            if (almacen.verAlmacen()) {
-                System.out.println();
-                System.out.print("Selecciona un artículo del almacén: ");
-                Articulo articulo = almacen.getArticulos()[input.nextInt() - 1];
-                //Seleccionamos cantidad que deseamos del artículo seleccionado
-                System.out.println();
-                System.out.print("Introduce cantidad del artículo: ");
-                int cantidad = input.nextInt();
-                //Añadimos el artículo y la cantidad al pedido
-                pedido.añadirArticulo(articulo, cantidad);
-            }
-            break;
+            case 2:
+                if (pedido.estaLleno()) {
+                    System.out.println();
+                    System.out.println("El carrito está lleno, no se pueden añadir más artículos.");
+                } else if (almacen.estaVacio()){
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                } else {
 
+                }
+            break;
             //Caso 3 Quitar artículo
             case 3:
-            //Mostramos almacén
-            almacen.verAlmacen();
-            //Seleccionamos artículo que deseamos quitar del pedido
-            System.out.println();
-            System.out.print("Selecciona un artículo del almacén: ");
-            int quitar = input.nextInt();
-            //Quitamos el artículo (y cantidad) del pedido
-            pedido.quitarArticulo(quitar);
             break;
-
-            //Caso 4 Modificar
+            //Caso 4 Modificar artículo
             case 4:
             break;
-
             //Caso 5 Ver pedido
             case 5:
-            pedido.verPedido();
+                pedido.verPedido();
             break;
-
             //Caso 6 Realizar pedido
             case 6:
-            pedido.realizarPedido();
+                pedido.realizarPedido();
             break;
-
             //Caso 7 Atrás
             case 7:
-            submenu = false;
+                submenu = false;
             break;
-
+            //Caso opción elegida por el usuario inválida.
             default:
-            System.out.println("Opción inválida.");
+                System.out.println("Opción inválida.");
             break;
         }
     }
-    
 }

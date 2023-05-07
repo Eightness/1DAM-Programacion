@@ -70,9 +70,9 @@ public class Articulo {
     public void verArticulo() {
         System.out.println();
         System.out.println("Nombre: " + nombre);
-        System.out.println("Precio: " + precio);
+        System.out.println("Precio: " + precio + " euros");
         System.out.println("Tipo de IVA: " + tipoIVA);
-        System.out.println("Cantidad: " + cantidad);
+        System.out.println("Cantidad: " + cantidad + " unidades");
         System.out.println();
     }
 

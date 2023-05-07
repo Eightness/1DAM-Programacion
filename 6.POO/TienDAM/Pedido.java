@@ -28,7 +28,11 @@ public class Pedido {
 
     //Constructor completo
     public Pedido(String nombre, double subtotal, double porcentDescuento, double precioFinal, int maxCarrito) {
-
+        setNombre(nombre);
+        setSubtotal(subtotal);
+        setPorcentDescuento(porcentDescuento);
+        setPrecioFinal(precioFinal);
+        setMaxCarrito(maxCarrito);
     }
 
     //Setters y Getters
@@ -85,6 +89,24 @@ public class Pedido {
 
     //Métodos
 
+    //Método para ver si el carrito está vacío
+    public boolean estaVacio() {
+        if (carrito[0] == null && cantidadArticulos[0] == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Método para ver si el carrito está lleno
+    public boolean estaLleno() {
+        if (numArticulos == maxCarrito) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Método para ver la lista de artículos añadidos al pedido
     public void verListaArticulos() {
         for (int i = 0; i < numArticulos; i++) {
@@ -101,12 +123,17 @@ public class Pedido {
     public void verPedido() {
         System.out.println();
         System.out.println("Nombre del cliente: " + nombre);
-        System.out.println("Subtotal: " + subtotal);
-        System.out.println("Porcentaje aplicado: " + porcentDescuento);
-        System.out.println("IVA: ");
-        System.out.println("Precio final: " + precioFinal);
+        System.out.println("Subtotal: " + calcularSubtotal() + " euros");
+        System.out.println("IVA: " + calcularIVA() + " euros");
+        System.out.println("Porcentaje aplicado: " + porcentDescuento + "%");
+        System.out.println("Precio final: " + calcularPrecioFinal() + " euros");
         System.out.println("Listado de artículos y cantidades:");
-        verListaArticulos();
+        if (estaVacio()) {
+            System.out.println();
+            System.out.println("No hay artículos añadidos al pedido.");
+        } else {
+            verListaArticulos();
+        }
     }
 
     //Método para añadir artículo
@@ -151,6 +178,27 @@ public class Pedido {
         return subtotal;
     }
 
+    //Método para calcular el IVA total
+    public double calcularIVA () {
+        double IVA = 0;
+        for (int i = 0; i < numArticulos; i++) {
+            switch(carrito[i].getTipoIVA()) {
+                case NORMAL:
+                    IVA += carrito[i].getPrecio() * 0.21;
+                break;
+
+                case REDUCIDO:
+                    IVA += carrito[i].getPrecio() * 0.1;
+                break;
+
+                case SUPERREDUCIDO:
+                    IVA += carrito[i].getPrecio() * 0.04;
+                break;
+            }
+        }
+        return IVA;
+    }
+
     //Método para calcular el precio final
     public double calcularPrecioFinal () {
         double precioFinal = 0;
@@ -174,7 +222,7 @@ public class Pedido {
         return precioFinal;
     }
 
-    //Método para pagar
+    //Método para realizar pedido
     public Pedido realizarPedido () {
         System.out.println();
         System.out.println("Pedido realizado con éxito.");
