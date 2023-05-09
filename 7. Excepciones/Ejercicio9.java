@@ -52,10 +52,8 @@ public class Ejercicio9 {
             a = getValidIntegerInput("Introduce un número entero: ");
             b = getValidIntegerInput("Introduce un número entero: ");
         } while (!getValidDivision(a, b));
-        //Calling method to validate division
-
-        }
         //Show result
+        double result = a/b;
         System.out.println("El resultado de la división entre ambos números es: " + result);
     }
     

@@ -43,6 +43,10 @@ public class Almacen {
     public int getMaxArticulos() {
         return maxArticulos;
     }
+    
+    public int getNumArticulos() {
+        return numArticulos;
+    }
 
     //Métodos
 
