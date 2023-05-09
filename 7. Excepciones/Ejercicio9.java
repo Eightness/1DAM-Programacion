@@ -36,9 +36,10 @@ public class Ejercicio9 {
     static boolean getValidDivision(int a, int b) {
         //Trying to execute the following block
         try {
-            double result = a/b;
+            int result = a/b;
             return true;
         } catch (ArithmeticException e) {
+            System.out.println();
             System.out.println("Error de cálculo aritmético.");
             return false;
         }
@@ -53,8 +54,10 @@ public class Ejercicio9 {
             b = getValidIntegerInput("Introduce un número entero: ");
         } while (!getValidDivision(a, b));
         //Show result
-        double result = a/b;
+        int result = a/b;
+        System.out.println();
         System.out.println("El resultado de la división entre ambos números es: " + result);
+        System.out.println();
     }
     
 }
