@@ -324,7 +324,7 @@ public class TienDAM {
             case 1:
                 if (pedido != null) {
                     System.out.println();
-                    System.out.println("Hay un pedido en curso, ¿Quieres sobreescribirlo? (1 Sí, 2 No)");
+                    System.out.print("Hay un pedido en curso, ¿Quieres sobreescribirlo? (1 Sí, 2 No) ");
                     switch(input.nextInt()) {
                         //En caso de querer sobreescribir
                         case 1:
