@@ -351,7 +351,15 @@ public class TienDAM {
                     System.out.println();
                     System.out.println("El almacén está vacío.");
                 } else {
-
+                    if (almacen.estaVacio()) {
+                        System.out.println();
+                        System.out.println("El almacén está vacío.");
+                    } else {
+                        almacen.verAlmacen();
+                        System.out.println();
+                        System.out.print("Selecciona un artículo de la lista: ");
+                        pedido.añadirArticulo(almacen.devolverArticulo(opcion), opcion);
+                    }
                 }
             break;
             //Caso 3 Quitar artículo

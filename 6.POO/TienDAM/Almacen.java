@@ -192,6 +192,17 @@ public class Almacen {
             return true;
         }
     }
+
+    //Método para devolver un artículo del almacén
+    public Articulo devolverArticulo(int pos) {
+        if (pos < 0 || pos > numArticulos) {
+            System.out.println();
+            System.out.println("Selección inválida.");
+            return null;
+        } else {
+            return articulos[pos];
+        }
+    }
 }
     
 
