@@ -137,7 +137,7 @@ public class Pedido {
     }
 
     //Método para añadir artículo
-    public void añadirArticulo (Articulo articulo, int cantidad) {
+    public void añadirArticulo (Articulo articulo, int cantidad, int pos) {
         carrito[numArticulos] = articulo;
         cantidadArticulos[numArticulos] = cantidad;
         numArticulos++;
