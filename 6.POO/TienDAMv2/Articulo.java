@@ -23,7 +23,7 @@ public class Articulo {
     }
 
     //Constructor completo
-    public Articulo(String nombre, double precio, IVA tipoIva, int cantidad) {
+    public Articulo(String nombre, double precio, IVA tipoIva, int cantidad) throws Exception {
         setNombre(nombre);
         setPrecio(precio);
         setTipoIVA(tipoIva);
@@ -39,11 +39,11 @@ public class Articulo {
         this.nombre = nombre;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(double precio) throws Exception {
         if (precio > 0) {
             this.precio = precio;
         } else {
-            throw new IllegalArgumentException("El precio debe ser mayor que cero.");
+            throw new Exception("El precio debe ser mayor que cero.");
         }
     }
 
@@ -51,11 +51,11 @@ public class Articulo {
         this.tipoIVA = tipoIVA;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(int cantidad) throws Exception {
         if (cantidad > 0) {
             this.cantidad = cantidad;
         } else {
-            throw new IllegalArgumentException("La cantidad debe ser mayor que cero.");
+            throw new Exception("La cantidad debe ser mayor que cero.");
         }
     }
 
@@ -91,24 +91,24 @@ public class Articulo {
     }
 
     //Método para añadir x cantidad a un artículo
-    public void aumentar(int cantidad) {
+    public void aumentar(int cantidad) throws Exception {
         if (cantidad > 0) {
             this.cantidad += cantidad;
             System.out.println();
             System.out.println("Se han recibido " + cantidad + " unidad/es de " + nombre);
         } else {
-            throw new IllegalArgumentException("La cantidad a aumentar debe ser mayor que cero.");
+            throw new Exception("La cantidad a aumentar debe ser mayor que cero.");
         }
     }
 
     //Método para disminuir x cantidad a un artículo
-    public void disminuir(int cantidad) {
+    public void disminuir(int cantidad) throws Exception {
         if (cantidad > 0 && cantidad <= this.cantidad) {
             this.cantidad -= cantidad;
             System.out.println();
             System.out.println("Se han devuelto " + cantidad + " unidad/es de " + nombre);
         } else {
-            throw new IllegalArgumentException("La cantidad a disminuir es inválida.");
+            throw new Exception("La cantidad a disminuir es inválida.");
         }
     }
     

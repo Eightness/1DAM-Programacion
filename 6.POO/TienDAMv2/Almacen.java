@@ -49,6 +49,11 @@ public class Almacen {
 
     //Método para ver/imprimir el almacén
     public void verAlmacen() {
+        if (articulos.isEmpty()) {
+            System.out.println();
+            System.out.println("El almacén está vacío.");
+            return;
+        }
         for (int i = 0; i < articulos.size(); i++) {
             System.out.println();
             System.out.println("Artículo " + (i + 1) + ":");
@@ -58,24 +63,24 @@ public class Almacen {
     }
 
     //Método para añadir un artículo al almacén
-    public void añadirArticulo(Articulo a) {
-        if (!existeArticulo(a)) {
+    public void añadirArticulo(Articulo a) throws Exception {
+        if (!existeArticulo(a) && a != null) {
             articulos.add(a);
             System.out.println();
             System.out.println("Se ha añadido el artículo al almacén.");
         } else {
-            throw new IllegalArgumentException("Ya existe un artículo con ese nombre.");
+            throw new Exception("No se ha podido añadir el artículo.");
         }
     }
 
     //Método para quitar un artículo del almacén
-    public void quitarArticulo(int index) {
+    public void quitarArticulo(int index) throws Exception {
         if (index >= 0 && index < articulos.size()) {
             articulos.remove(index);
             System.out.println();
             System.out.println("Se ha quitado el artículo seleccionado del almacén.");
         } else {
-            throw new IllegalArgumentException("No se ha podido eliminar el artículo.");
+            throw new Exception("No se ha podido eliminar el artículo.");
         }
     }
 
@@ -97,40 +102,55 @@ public class Almacen {
     }
 
     //Método para modificar el precio de un artículo del almacén
-    public void modificarPrecio(int index, double precio) {
+    public void modificarPrecio(int index, double precio) throws Exception {
         if (precio > 0 && index >= 0 && index < articulos.size()) {
-            articulos.get(index).setPrecio(precio);
-            System.out.println();
-            System.out.println("Precio del artículo modificado con éxito.");
+            try {
+                articulos.get(index).setPrecio(precio);
+                System.out.println();
+                System.out.println("Precio del artículo modificado con éxito.");
+            } catch (Exception e) {
+                System.out.println();
+                System.out.println(e.getMessage());
+            }
         } else {
-            throw new IllegalArgumentException("No se ha podido modificar el precio del artículo seleccionado.");
+            throw new Exception("No se ha podido modificar el precio del artículo seleccionado.");
         }
     }
 
     //Método para recibir x cantidad de un artículo
-    public void recibir(int index, int cantidad) {
+    public void recibir(int index, int cantidad) throws Exception {
         if (index >= 0 && index < articulos.size()) {
-            articulos.get(index).aumentar(cantidad);
+            try {
+                articulos.get(index).aumentar(cantidad);
+            } catch (Exception e) {
+                System.out.println();
+                System.out.println(e.getMessage());
+            }
         } else {
-            throw new IllegalArgumentException("Artículo seleccionado inválido.");
+            throw new Exception("Artículo seleccionado inválido.");
         }
     }
 
     //Método para devolver x cantidad de un artículo
-    public void devolver(int index, int cantidad) {
+    public void devolver(int index, int cantidad) throws Exception {
         if (index >= 0 && index < articulos.size()) {
-            articulos.get(index).disminuir(cantidad);
+            try {
+                articulos.get(index).disminuir(cantidad);
+            } catch (Exception e) {
+                System.out.println();
+                System.out.println(e.getMessage());
+            }
         } else {
-            throw new IllegalArgumentException("Artículo seleccionado inválido.");
+            throw new Exception("Artículo seleccionado inválido.");
         }
     }
 
     //Método que *devuelve* un artículo del almacén
-    public Articulo getArticulo(int index) {
+    public Articulo getArticulo(int index) throws Exception {
         if (index >= 0 && index < articulos.size()) {
             return articulos.get(index);
         } else {
-            throw new IllegalArgumentException("Artículo seleccionado inválido.");
+            throw new Exception("Artículo seleccionado inválido.");
         }
     }
     
