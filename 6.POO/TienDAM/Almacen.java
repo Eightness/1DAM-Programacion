@@ -194,7 +194,7 @@ public class Almacen {
     }
 
     //Método para devolver un artículo del almacén
-    public Articulo devolverArticulo(int pos) {
+    public Articulo getArticulo(int pos) {
         if (pos < 0 || pos > numArticulos) {
             System.out.println();
             System.out.println("Selección inválida.");
