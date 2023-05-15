@@ -16,10 +16,6 @@ public class TienDAM {
     //MAIN
 
     public static void main(String[] args) {
-        //Cargar Almacén
-        //System.out.println();
-        //System.out.println("Primero, vamos a crear un almacén de prueba con 5 artículos.");
-        //almacen = crearAlmacen();
 
         //Bienvenida
         System.out.println();
@@ -351,34 +347,29 @@ public class TienDAM {
                     System.out.println();
                     System.out.println("El almacén está vacío.");
                 } else {
-                    if (almacen.estaVacio()) {
+                    almacen.verAlmacen();
+                    int articulo = 0;
+                    do {
                         System.out.println();
-                        System.out.println("El almacén está vacío.");
-                    } else {
-                        almacen.verAlmacen();
-                        int articulo = 0;
-                        do {
+                        System.out.print("Selecciona un artículo de la lista: ");
+                        articulo = input.nextInt() - 1;
+                        if (articulo < 0 || articulo >= almacen.getMaxArticulos()) {
                             System.out.println();
-                            System.out.print("Selecciona un artículo de la lista: ");
-                            articulo = input.nextInt() - 1;
-                            if (articulo < 0 || articulo >= almacen.getMaxArticulos()) {
-                                System.out.println();
-                                System.out.println("Artículo seleccionado inválido.");
-                            }
-                        } while (articulo < 0 || articulo >= almacen.getMaxArticulos());
-                        int cantidad = 0;
-                        do {
+                            System.out.println("Artículo seleccionado inválido.");
+                        }
+                    } while (articulo < 0 || articulo >= almacen.getMaxArticulos());
+                    int cantidad = 0;
+                    do {
+                        System.out.println();
+                        System.out.print("Introduce la cantidad: ");
+                        cantidad = input.nextInt();
+                        if (almacen.getArticulo(articulo).getCantidad() > cantidad) {
                             System.out.println();
-                            System.out.print("Introduce la cantidad: ");
-                            cantidad = input.nextInt();
-                            if (almacen.devolverArticulo(articulo).getCantidad() > cantidad) {
-                                System.out.println();
-                                System.out.println("La cantidad introducida excede las existencias.");
-                            }
-                        } while (almacen.devolverArticulo(articulo).getCantidad() > cantidad);
-                        pedido.añadirArticulo(almacen.devolverArticulo(articulo), cantidad);
-                        almacen.devolver(articulo, cantidad);
-                    }
+                            System.out.println("La cantidad introducida excede las existencias.");
+                        }
+                    } while (almacen.getArticulo(articulo).getCantidad() > cantidad);
+                    pedido.añadirArticulo(almacen.getArticulo(articulo), cantidad);
+                    almacen.devolver(articulo, cantidad);
                 }
             break;
             //Caso 3 Quitar artículo
