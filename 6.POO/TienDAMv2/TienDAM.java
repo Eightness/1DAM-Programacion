@@ -450,10 +450,20 @@ public class TienDAM {
                 int recibirCantidad = pedido.getCantidades().get(quitar - 1);
                 try {
                     pedido.quitarArticulo(quitar - 1);
-                    almacen.recibir(indexAlmacen, recibirCantidad);
                 } catch (Exception e) {
                     System.out.println();
                     System.out.println(e.getMessage());
+                }
+                if (indexAlmacen != -1) {
+                    try {
+                        almacen.recibir(indexAlmacen, recibirCantidad);
+                    } catch (Exception e) {
+                        System.out.println();
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    System.out.println();
+                    System.out.println("Se ha devuelto directamente a proveedor, puesto que el artículo ya no está en almacén.");
                 }
             break;
             
