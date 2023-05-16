@@ -83,6 +83,26 @@ public class Pedido {
 
     //Métodos
 
+    //Método para comprobar si ya existe un artículo en el pedido
+    public boolean existeArticulo(String nombre) {
+        for (int i = 0; i < carrito.size(); i++) {
+            if (carrito.get(i).getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Método que *devuelve* la posición de un artículo en el carrito
+    public int indexArticulo(String nombre) {
+        for (int i = 0; i < carrito.size(); i++) {
+            if (carrito.get(i).getNombre().equals(nombre)) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
     //Método para ver la lista de artículos añadidos al pedido
     public void verCarrito() {
         for (int i = 0; i < carrito.size(); i++) {
@@ -115,10 +135,17 @@ public class Pedido {
     //Método para añadir artículo
     public void añadirArticulo (Articulo articulo, int cantidad) throws Exception {
         if (articulo != null && cantidad > 0) {
-            carrito.add(articulo);
-            cantidades.add(cantidad);
-            System.out.println();
-            System.out.println("Artículo y cantidad añadidos al pedido con éxito.");
+            if (existeArticulo(articulo.getNombre())) {
+                int indexPedido = indexArticulo(articulo.getNombre());
+                cantidades.set(indexPedido, (cantidades.get(indexPedido) + cantidad));
+                System.out.println();
+                System.out.println("Se han añadido " + cantidad + " unidad/es más del artículo " + articulo.getNombre() + ".");
+            } else {
+                carrito.add(articulo);
+                cantidades.add(cantidad);
+                System.out.println();
+                System.out.println("Artículo y cantidad añadidos al pedido con éxito.");
+            }
         } else {
             throw new Exception("No se pudo añadir el artículo ni la cantidad al carrito.");
         }
