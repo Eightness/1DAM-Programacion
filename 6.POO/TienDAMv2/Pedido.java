@@ -164,7 +164,7 @@ public class Pedido {
         }
     }
 
-    //Método para modfiicar artículo (cantidad)
+    //Método para modificar artículo (cantidad)
     public void modificarCarrito(int index, int cantidad) throws Exception {
         if (index >= 0 && index < carrito.size() && cantidad > 0) {
             cantidades.set(index, cantidad);
