@@ -113,26 +113,38 @@ public class Pedido {
     }
 
     //Método para añadir artículo
-    public void añadirArticulo (Articulo articulo, int cantidad) {
-        carrito.add(articulo);
-        cantidades.add(cantidad);
-        System.out.println();
-        System.out.println("Artículo y cantidad añadidos al pedido con éxito.");
+    public void añadirArticulo (Articulo articulo, int cantidad) throws Exception {
+        if (articulo != null && cantidad > 0) {
+            carrito.add(articulo);
+            cantidades.add(cantidad);
+            System.out.println();
+            System.out.println("Artículo y cantidad añadidos al pedido con éxito.");
+        } else {
+            throw new Exception("No se pudo añadir el artículo ni la cantidad al carrito.");
+        }
     }
 
     //Método para quitar artículo
-    public void quitarArticulo (int index) {
-        carrito.remove(index);
-        cantidades.remove(index);
-        System.out.println();
-        System.out.println("Artículo eliminados del pedido con éxito.");
+    public void quitarArticulo (int index) throws Exception {
+        if (index >= 0 && index < carrito.size()) {
+            carrito.remove(index);
+            cantidades.remove(index);
+            System.out.println();
+            System.out.println("Artículo eliminados del pedido con éxito.");
+        } else {
+            throw new Exception("No se pudo quitar el artículo seleccionado.");
+        }
     }
 
     //Método para modfiicar artículo (cantidad)
-    public void modificarCarrito(int index, int cantidad) {
-        cantidades.set(index, cantidad);
-        System.out.println();
-        System.out.println("Cantidad del artículo modificada con éxito.");
+    public void modificarCarrito(int index, int cantidad) throws Exception {
+        if (index >= 0 && index < carrito.size() && cantidad > 0) {
+            cantidades.set(index, cantidad);
+            System.out.println();
+            System.out.println("Cantidad del artículo modificada con éxito.");
+        } else {
+            throw new Exception("No se pudo modificar la cantidad del artículo seleccionado.");
+        }
     }
 
     //Método para calcular el subtotal
