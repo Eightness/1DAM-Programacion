@@ -95,6 +95,7 @@ public class Almacen {
         for (int i = 0; i < articulos.size(); i++) {
             if (articulos.get(i).getNombre().toLowerCase().contains(nombre.toLowerCase())) {
                 articulos.get(i).verArticulo();
+                System.out.println("--------------------");
                 check = true;
             }
         }
