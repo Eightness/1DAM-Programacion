@@ -7,8 +7,8 @@ public class Pedido {
     private double subtotal;
     private double porcentDescuento;
     private double precioFinal;
-    private ArrayList<Articulo> carrito = new ArrayList<>();
-    private ArrayList<Integer> cantidades = new ArrayList<>();
+    private ArrayList<Articulo> carrito = new ArrayList<>();    
+    private ArrayList<Integer> cantidades = new ArrayList<>();  
 
     //---------------------------------------------------------------------
 
@@ -109,7 +109,8 @@ public class Pedido {
             System.out.println();
             System.out.println("Artículo " + (i + 1) + ":");
             System.out.println();
-            System.out.println("Nombre: " + carrito.get(i).getNombre() + "\tCantidad: " + cantidades.get(i));
+            System.out.println("Nombre: " + carrito.get(i).getNombre());
+            System.out.println("Cantidad: " + cantidades.get(i));
             System.out.println();
             System.out.println("-------------------------");
         }
