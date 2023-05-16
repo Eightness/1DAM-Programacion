@@ -369,7 +369,10 @@ public class TienDAM {
                     switch(eleccion) {
                         //Sí
                         case 1:
+                            devolverArticulosPedido();
                             pedido = crearPedido();
+                            System.out.println();
+                            System.out.println("Pedido creado con éxito.");
                         break;
                         //No
                         case 2:
@@ -512,7 +515,7 @@ public class TienDAM {
                 switch(eleccion) {
                     //Sí
                     case 1:
-                        pedido.realizarPedido();
+                        pedido = pedido.realizarPedido();
                     break;
                     //No
                     case 2:
@@ -536,6 +539,19 @@ public class TienDAM {
                 System.out.println();
                 System.out.println("Opción inválida.");
             break;
+        }
+    }
+
+    //Método específico para devolver todos los artículos de un pedido al almacén (en caso de anular pedido)
+    static void devolverArticulosPedido() {
+        for (int i = 0; i < pedido.getCarrito().size(); i++) {
+            int almacenIndex = almacen.getIndex(pedido.getCarrito().get(i).getNombre());
+            try {
+                almacen.recibir(almacenIndex, pedido.getCantidades().get(i));
+            } catch (Exception e) {
+                System.out.println();
+                System.out.println(e.getMessage());
+            }
         }
     }
 

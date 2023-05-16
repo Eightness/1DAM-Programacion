@@ -158,7 +158,7 @@ public class Pedido {
             carrito.remove(index);
             cantidades.remove(index);
             System.out.println();
-            System.out.println("Artículo eliminados del pedido con éxito.");
+            System.out.println("Artículo eliminado del pedido con éxito.");
         } else {
             throw new Exception("No se pudo quitar el artículo seleccionado.");
         }
@@ -179,7 +179,7 @@ public class Pedido {
     public double calcularSubtotal () {
         double subtotal = 0;
         for (int i = 0; i < carrito.size(); i++) {
-            subtotal += carrito.get(i).getPrecio();
+            subtotal += (carrito.get(i).getPrecio() * cantidades.get(i));
         }
         return subtotal;
     }
@@ -190,15 +190,15 @@ public class Pedido {
         for (int i = 0; i < carrito.size(); i++) {
             switch(carrito.get(i).getTipoIVA()) {
                 case NORMAL:
-                    IVA += carrito.get(i).getPrecio() * 0.21;
+                    IVA += (carrito.get(i).getPrecio() * cantidades.get(i)) * 0.21;
                 break;
 
                 case REDUCIDO:
-                    IVA += carrito.get(i).getPrecio() * 0.1;
+                    IVA += (carrito.get(i).getPrecio() * cantidades.get(i)) * 0.1;
                 break;
 
                 case SUPERREDUCIDO:
-                    IVA += carrito.get(i).getPrecio() * 0.04;
+                    IVA += (carrito.get(i).getPrecio() * cantidades.get(i)) * 0.04;
                 break;
             }
         }
@@ -211,15 +211,15 @@ public class Pedido {
         for (int i = 0; i < carrito.size(); i++) {
             switch (carrito.get(i).getTipoIVA()) {
                 case NORMAL:
-                    precioFinal += carrito.get(i).getPrecio() * 1.21;
+                    precioFinal += (carrito.get(i).getPrecio() * cantidades.get(i)) * 1.21;
                 break;
 
                 case REDUCIDO:
-                    precioFinal += carrito.get(i).getPrecio() * 1.1;
+                    precioFinal += (carrito.get(i).getPrecio() * cantidades.get(i)) * 1.1;
                 break;
 
                 case SUPERREDUCIDO:
-                    precioFinal += carrito.get(i).getPrecio() * 1.04;
+                    precioFinal += (carrito.get(i).getPrecio() * cantidades.get(i)) * 1.04;
                 break;
             }
         }
