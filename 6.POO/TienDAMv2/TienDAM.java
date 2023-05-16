@@ -5,6 +5,7 @@ public class TienDAM {
     //Atributos
     static Scanner input = new Scanner(System.in);
     static Almacen almacen = new Almacen();
+    static Pedido pedido = null;
     static boolean tiendam = true;
     static boolean submenu = true;
 
@@ -22,7 +23,7 @@ public class TienDAM {
         System.out.println();
         System.out.println("¡Bienvenido a TienDAM! - Aplicación desarrollada por Albert.");
 
-        //Bucle principal6
+        //Bucle principal
         while(tiendam) {
             switchMenu(menu());
         }
@@ -57,6 +58,7 @@ public class TienDAM {
             break;
             //Caso input inválido, se define el IVA Normal por defecto.
             default:
+                System.out.println();
                 System.out.println("Opción inválida, se queda el IVA normal.");
             break;
         }
@@ -74,6 +76,16 @@ public class TienDAM {
     }
 
     //Método para crear un pedido
+    static Pedido crearPedido() {
+        //Obtenemos el nombre
+        String nombre = obtenerStringValido("Introduce el nombre del cliente: ");
+        //Obtenemos el porcentaje del descuento que se le quiere aplicar al pedido
+        double porcentDescuento = obtenerEnteroValido("Introduce el porcentaje de descuento a aplicar (0 si no se quiere aplicar ningún descuento): ");
+        //Instanciamos objeto pedido con los datos del usuario
+        Pedido p = new Pedido(nombre, porcentDescuento);
+        //Devolvemos el pedido instanciado
+        return p;
+    }
 
     //---------------------------------------------------------------------
 
@@ -125,7 +137,7 @@ public class TienDAM {
         return res;
     }
 
-    //Método para pedir una String al usuario
+    //Método para pedir un double al usuario
     static double obtenerDoubleValido(String mensaje) {
         //Declarando e inicializando variables
         double res = 0;
@@ -142,6 +154,7 @@ public class TienDAM {
             } catch (InputMismatchException e) {
                 System.out.println();
                 System.out.println("Tipo de dato introducido incorrecto.");
+                input.nextLine();
             }
         } while (!check);
         //Devuelve el input del usuario
@@ -348,26 +361,136 @@ public class TienDAM {
         switch(opcion) {
             //Crear
             case 1:
+                if (pedido == null) {
+                    pedido = crearPedido();
+                } else {
+                    int eleccion = obtenerEnteroValido("Ya hay un pedido en curso, ¿quieres reemplazarlo? (1 Sí, 2 No) ");
+                    switch(eleccion) {
+                        //Sí
+                        case 1:
+                            pedido = crearPedido();
+                        break;
+                        //No
+                        case 2:
+                            //No pasa nada.
+                        break;
+                        //Por defecto
+                        default:
+                            System.out.println();
+                            System.out.println("Opción inválida.");
+                        break;
+                    }
+                }
             break;
 
             //Añadir artículo
             case 2:
+                if (pedido == null) {
+                    System.out.println();
+                    System.out.println("No hay ningún pedido en marcha.");
+                    break;
+                }
+                if (almacen.getArticulos().isEmpty()) {
+                    System.out.println();
+                    System.out.println("El almacén está vacío.");
+                    break;
+                }
+                almacen.verAlmacen();
+                int añadir = obtenerEnteroValido("Selecciona un artículo: ");
+                int cantidad = obtenerEnteroValido("Introduce una cantidad: ");
+                Articulo a = null;
+                try {
+                    a = almacen.getArticulo(añadir - 1);
+                } catch (Exception e) {
+                    System.out.println();
+                    System.out.println(e.getMessage());
+                }
+                try {
+                    pedido.añadirArticulo(a, cantidad);
+                } catch (Exception e) {
+                    System.out.println();
+                    System.out.println(e.getMessage());
+                }
             break;
 
             //Quitar artículo
             case 3:
+                if (pedido == null) {
+                    System.out.println();
+                    System.out.println("No hay ningún pedido en marcha.");
+                    break;
+                }
+                if (pedido.getCarrito().isEmpty()) {
+                    System.out.println();
+                    System.out.println("El carrito está vacío.");
+                    break;
+                }
+                pedido.verCarrito();
+                int quitar = obtenerEnteroValido("Selecciona un artículo: ");
+                try {
+                    pedido.quitarArticulo(quitar - 1);
+                } catch (Exception e) {
+                    System.out.println();
+                    System.out.println(e.getMessage());
+                }
             break;
             
             //Modificar artículo
             case 4:
+                if (pedido == null) {
+                    System.out.println();
+                    System.out.println("No hay ningún pedido en marcha.");
+                    break;
+                }
+                if (pedido.getCarrito().isEmpty()) {
+                    System.out.println();
+                    System.out.println("El carrito está vacío.");
+                    break;
+                }
+                pedido.verCarrito();
+                int modificar = obtenerEnteroValido("Selecciona un artículo: ");
+                int modCantidad = obtenerEnteroValido("Introduce nueva cantidad: ");
+                try {
+                    pedido.modificarCarrito(modificar, modCantidad);
+                } catch (Exception e) {
+                    System.out.println();
+                    System.out.println(e.getMessage());
+                }
             break;
 
             //Ver
             case 5:
+                if (pedido == null) {
+                    System.out.println();
+                    System.out.println("No hay ningún pedido en marcha.");
+                    break;
+                }
+                pedido.verPedido();
             break;
 
             //Realizar
             case 6:
+                if (pedido == null) {
+                    System.out.println();
+                    System.out.println("No hay ningún pedido en marcha.");
+                    break;
+                }
+                int eleccion = obtenerEnteroValido("¿Estás seguro de querer realizar el pedido? (1 Sí, 2 No) ");
+                switch(eleccion) {
+                    //Sí
+                    case 1:
+                        pedido.realizarPedido();
+                    break;
+                    //No
+                    case 2:
+                        //No pasa nada.
+                    break;
+                    //Por defecto
+                    default:
+                        System.out.println();
+                        System.out.println("Opción inválida.");
+                    break;
+                }
             break;
 
             //Atrás

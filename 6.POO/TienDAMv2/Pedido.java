@@ -128,15 +128,7 @@ public class Pedido {
         System.out.println("Artículo eliminados del pedido con éxito.");
     }
 
-    //Método para modificar artículo (artículo y cantidad)
-    public void modificarCarrito(int index, Articulo articulo, int cantidad) {
-        carrito.set(index, articulo);
-        cantidades.set(index, cantidad);
-        System.out.println();
-        System.out.println("Artículo y cantidad modificados con éxito.");
-    }
-
-    //Método para modfiicar artículo (sólo cantidad)
+    //Método para modfiicar artículo (cantidad)
     public void modificarCarrito(int index, int cantidad) {
         cantidades.set(index, cantidad);
         System.out.println();
@@ -199,7 +191,9 @@ public class Pedido {
     //Método para realizar el pedido
     public Pedido realizarPedido() {
         System.out.println();
+        System.out.println("Transferencia de " + calcularPrecioFinal() + " euros completada.");
         System.out.println("Pedido realizado con éxito.");
+        System.out.println("¡Gracias!");
         return null;
     }
 

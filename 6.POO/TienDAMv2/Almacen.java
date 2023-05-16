@@ -39,6 +39,9 @@ public class Almacen {
 
     //Método para comprobar si ya existe x artículo en el almacén
     public boolean existeArticulo(Articulo articuloBuscado) {
+        if (articuloBuscado == null) {
+            return false;
+        }
         for (Articulo articulo : articulos) {
             if (articulo.getNombre() == articuloBuscado.getNombre()) {
                 return true;
