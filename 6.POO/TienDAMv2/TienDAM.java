@@ -475,6 +475,11 @@ public class TienDAM {
                     System.out.println("No hay ningún pedido en marcha.");
                     break;
                 }
+                if (pedido.getCarrito().isEmpty()) {
+                    System.out.println();
+                    System.out.println("El carrito está vacío.");
+                    break;
+                }
                 int eleccion = obtenerEnteroValido("¿Estás seguro de querer realizar el pedido? (1 Sí, 2 No) ");
                 switch(eleccion) {
                     //Sí
