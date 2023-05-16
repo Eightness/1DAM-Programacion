@@ -361,7 +361,7 @@ public class TienDAM {
     static void switchPedido(int opcion) {
         switch(opcion) {
             //Crear
-            case 1:
+            case 1: 
                 if (pedido == null) {
                     pedido = crearPedido();
                 } else {
@@ -469,8 +469,17 @@ public class TienDAM {
                 pedido.verCarrito();
                 int modificar = obtenerEnteroValido("Selecciona un artículo: ");
                 int modCantidad = obtenerEnteroValido("Introduce nueva cantidad: ");
+                int indexAlmacenMod = almacen.getIndex(pedido.getCarrito().get(modificar - 1).getNombre());
+                int recibirCantidadMod = pedido.getCantidades().get(modificar - 1);
                 try {
-                    pedido.modificarCarrito(modificar, modCantidad);
+                    almacen.recibir(indexAlmacenMod, recibirCantidadMod);
+                } catch (Exception e) {
+                    System.out.println();
+                    System.out.println(e.getMessage());
+                }
+                try {
+                    pedido.modificarCarrito(modificar - 1, modCantidad);
+                    almacen.devolver(indexAlmacenMod, modCantidad);
                 } catch (Exception e) {
                     System.out.println();
                     System.out.println(e.getMessage());
