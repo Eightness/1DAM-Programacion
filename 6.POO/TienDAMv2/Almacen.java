@@ -156,5 +156,15 @@ public class Almacen {
             throw new Exception("Artículo seleccionado inválido.");
         }
     }
+
+    //Método que *devuelve* la posición de un artículo de determinado nombre
+    public int getIndex(String nombre) {
+        for (int i = 0; i < articulos.size(); i++) {
+            if (articulos.get(i).getNombre().equals(nombre)) {
+                return i;
+            }
+        }
+        return 0;
+    }
     
 }

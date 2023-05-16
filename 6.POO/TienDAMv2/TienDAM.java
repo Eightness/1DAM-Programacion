@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
+
 public class TienDAM {
 
     //Atributos
@@ -196,7 +197,7 @@ public class TienDAM {
         System.out.println("1. Crear pedido.");
         System.out.println("2. Añadir artículo.");
         System.out.println("3. Quitar artículo.");
-        System.out.println("4. Modificar pedido.");
+        System.out.println("4. Modificar artículo.");
         System.out.println("5. Ver pedido.");
         System.out.println("6. Realizar pedido.");
         System.out.println("7. Atrás.");
@@ -397,7 +398,21 @@ public class TienDAM {
                 }
                 almacen.verAlmacen();
                 int añadir = obtenerEnteroValido("Selecciona un artículo: ");
-                int cantidad = obtenerEnteroValido("Introduce una cantidad: ");
+                int cantidadInicial = 0;
+                try {
+                    cantidadInicial = almacen.getArticulo(añadir - 1).getCantidad();
+                } catch (Exception e) {
+                    System.out.println();
+                    System.out.println(e.getMessage());
+                }
+                int cantidad = 0;
+                do {
+                    cantidad = obtenerEnteroValido("Introduce una cantidad: ");
+                    if (cantidad > cantidadInicial) {
+                        System.out.println();
+                        System.out.println("No se pueden añadir al carrito más unidades de las que hay disponibles en el almacén.");
+                    }
+                } while (cantidad > cantidadInicial);
                 Articulo a = null;
                 try {
                     a = almacen.getArticulo(añadir - 1);
@@ -407,6 +422,7 @@ public class TienDAM {
                 }
                 try {
                     pedido.añadirArticulo(a, cantidad);
+                    almacen.devolver(añadir - 1, cantidad);
                 } catch (Exception e) {
                     System.out.println();
                     System.out.println(e.getMessage());
@@ -427,8 +443,11 @@ public class TienDAM {
                 }
                 pedido.verCarrito();
                 int quitar = obtenerEnteroValido("Selecciona un artículo: ");
+                int indexAlmacen = almacen.getIndex(pedido.getCarrito().get(quitar - 1).getNombre());
+                int recibirCantidad = pedido.getCantidades().get(quitar - 1);
                 try {
                     pedido.quitarArticulo(quitar - 1);
+                    almacen.recibir(indexAlmacen, recibirCantidad);
                 } catch (Exception e) {
                     System.out.println();
                     System.out.println(e.getMessage());

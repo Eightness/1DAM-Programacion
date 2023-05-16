@@ -95,7 +95,7 @@ public class Articulo {
         if (cantidad > 0) {
             this.cantidad += cantidad;
             System.out.println();
-            System.out.println("Se han recibido " + cantidad + " unidad/es de " + nombre);
+            System.out.println("Se han recibido " + cantidad + " unidad/es de " + nombre + " en el almacén.");
         } else {
             throw new Exception("La cantidad a aumentar debe ser mayor que cero.");
         }
@@ -106,7 +106,7 @@ public class Articulo {
         if (cantidad > 0 && cantidad <= this.cantidad) {
             this.cantidad -= cantidad;
             System.out.println();
-            System.out.println("Se han devuelto " + cantidad + " unidad/es de " + nombre);
+            System.out.println("Se han retirado " + cantidad + " unidad/es de " + nombre + " del almacén.");
         } else {
             throw new Exception("La cantidad a disminuir es inválida.");
         }
