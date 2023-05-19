@@ -3,10 +3,9 @@ public class CuentaCorriente {
     //Atributos
     private String titular;
     private double saldo;
-
-    protected static double comisionOperacion = 1;
-    protected static double comisionMensual = 5;
-    protected static double interesesMensual = 0.01;
+    protected double comisionOperacion;
+    protected double comisionMensual;
+    protected double interesesMensual;
 
     //Constructor
 
